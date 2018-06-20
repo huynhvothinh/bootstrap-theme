@@ -1,0 +1,7 @@
+.lw-widget-container .item{
+    float: left;     
+} 
+.lw-widget-container .item-header,
+.lw-widget-container .item-body{
+    margin: 5px;
+}

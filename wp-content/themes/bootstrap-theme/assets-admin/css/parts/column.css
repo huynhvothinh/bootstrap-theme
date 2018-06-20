@@ -1,0 +1,44 @@
+.lw-widget-container .col-1{
+    width: 8.33%;
+}
+.lw-widget-container .col-2{
+    width: 16.66%;
+}
+.lw-widget-container .col-3{
+    width: 25%;
+}
+.lw-widget-container .col-4{
+    width: 33.33%;
+}
+.lw-widget-container .col-5{
+    width: 41.66%;
+}
+.lw-widget-container .col-6{
+    width: 50%;
+}
+.lw-widget-container .col-7{
+    width: 58.33%;
+}
+.lw-widget-container .col-8{
+    width: 66.66%;
+}
+.lw-widget-container .col-9{
+    width: 75%;
+}
+.lw-widget-container .col-10{
+    width: 83.33%;
+}
+.lw-widget-container .col-11{
+    width: 91.66%;
+}
+.lw-widget-container .col-12{
+    width: 100%;
+}
+.lw-widget-container .column{
+    float: left;  
+    border-bottom: 1px solid gainsboro;    
+} 
+.lw-widget-container .column-header,
+.lw-widget-container .column-body{
+    margin: 5px;
+}

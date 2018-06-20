@@ -1,0 +1,27 @@
+.lw-widget-container input[type=button]{
+    font-size: 10px;
+}
+.lw-widget-container .header{
+    background-color: #f1f1f1;
+    padding: 5px; 
+    border-top: 2px solid #ca4a1f; 
+}
+.lw-widget-container .column-header{
+    border-top: 2px solid #0085ba;
+}
+.lw-widget-container .row-header{
+    border-top: 2px solid #23282d;
+} 
+.lw-widget-container .body{
+    display: inline-block;
+}
+.lw-widget-container .fas{
+    font-size: 15px;
+    margin-left: 5px;
+}
+.lw-widget-container .right{
+    float: right;
+}
+.lw-widget-container .box.moved{
+    box-shadow: 2px 2px 2px 2px #0085ba; 
+}

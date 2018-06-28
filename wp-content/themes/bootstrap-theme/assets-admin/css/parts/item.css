@@ -5,3 +5,8 @@
 .lw-widget-container .item-body{
     margin: 5px;
 }
+.lw-widget-container .item .lw-popup-header .title{
+    font-size: 20px;
+    padding-top: 5px;
+    text-transform: uppercase;
+}

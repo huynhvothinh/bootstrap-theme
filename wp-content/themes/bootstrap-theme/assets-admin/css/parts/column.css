@@ -40,5 +40,11 @@
 } 
 .lw-widget-container .column-header,
 .lw-widget-container .column-body{
-    margin: 5px;
+    margin: 1px;
+}
+.lw-widget-container .content{
+    border-right: 1px solid gainsboro;
+}
+.lw-widget-container .column-header{
+    border-top: 2px solid #0085ba;
 }

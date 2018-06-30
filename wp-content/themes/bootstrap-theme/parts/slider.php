@@ -32,7 +32,7 @@ function lw_create_slider() {
         // CPT Options
         array(
             'labels' => array(
-                'name' => __( 'Slider', 'lw' ),
+                'name' => __( 'LW Slider', 'lw' ),
                 'singular_name' => __( 'lw-slider' )
             ),
             'public' => true,

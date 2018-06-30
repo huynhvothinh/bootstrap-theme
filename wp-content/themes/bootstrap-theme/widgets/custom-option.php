@@ -14,28 +14,86 @@ add_action( 'save_post', 'save_post_options_widget' );
  *  Adds a box to the main column on the Post edit screen
  * 
  */
-function post_options_widget() {
-    add_meta_box( 'post_options', __( 'Custom Widgets' ), 'post_options_code_widget', ['post', 'page'], 'normal', 'high' );
+function post_options_widget() { 
+    // add_meta_box( 'sidebar_position', __( 'LW Page Sidebar position' ), 'post_options_page_sidebar_position', ['page'], 'normal', 'high' );
+    // add_meta_box( 'post_options_top', __( 'LW Top Custom Widgets' ), 'post_options_code_widget_top', ['post', 'page','lw-template'], 'normal', 'high' );
+    // add_meta_box( 'post_options', __( 'LW Custom Widgets' ), 'post_options_code_widget', ['post', 'page','lw-template'], 'normal', 'high' );
+    // add_meta_box( 'post_options_bottom', __( 'LW Bottom Custom Widgets' ), 'post_options_code_widget_bottom', ['post', 'page','lw-template'], 'normal', 'high' );
+
+    add_meta_box( 'post_options_all', __( 'LW Custom Widgets' ), 'post_options_all_widgets', ['post', 'page','lw-template'], 'normal', 'high' );
 }
 
-/**
- *  Prints the box content
- */
+function post_options_all_widgets($post){
+?>
+    <table border="1" style="width:100%; max-width:600px;">
+        <tbody>
+            <tr>
+                <td colspan="2"><h4>HEADER</h4></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <h4>WIDGET TOP</h4>
+                    <?php post_options_code_widget_top($post);?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>POST/PAGE CONTENT</h4>
+                    <hr>
+                    <h4>WIDGET CONTENT</h4>
+                    <?php post_options_code_widget($post);?>
+                </td>
+                <td>
+                    <h4>SIDEBAR</h4>
+                    <?php post_options_page_sidebar_position( $post );?>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <h4>WIDGET BOTTOM</h4>
+                    <?php post_options_code_widget_bottom($post);?>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><h4>FOOTER</h4></td>
+            </tr>
+        </tbody>
+    </table>
+<?php
+}
+
+function post_options_code_widget_top( $post ) { 
+    post_options_code_widget_base($post, 'top');
+}
+function post_options_code_widget_bottom( $post ) { 
+    post_options_code_widget_base($post, 'bottom');
+}
 function post_options_code_widget( $post ) { 
+    post_options_code_widget_base($post, '');
+}
+function post_options_code_widget_base( $post, $position = '') { 
+    if($position){
+        $position = '_'.$position;
+    }
+    
     wp_nonce_field( plugin_basename( __FILE__ ), $post->post_type . '_noncename' );
-    $lw_widgets_json = get_post_meta( $post->ID, 'lw_widgets_json', true) ? get_post_meta( $post->ID, 'lw_widgets_json', true) : 1; 
-    $id = 'post_options_code_widget'; 
+    $lw_widgets_json_string = 'lw_widgets_json'.$position;
+    $lw_widgets_json = get_post_meta( $post->ID, $lw_widgets_json_string, true);
+    if(!$lw_widgets_json){
+        $lw_widgets_json = '{}';
+    }
+    $id = 'post_options_code_widget'.$position; 
 ?>
     <div class="widget" data-lw-id="<?php echo $id;?>">
         <div class="lw-buttons">
             <input type="button" class="btn-show-settings button button-primary" data-lw-id="<?php echo $id;?>" value="Settings">
             <div class="lw_widgets_json" data-lw-id="<?php echo $id;?>">
-                <textarea style="display:none;" id="lw_widgets_json" name="lw_widgets_json"><?php echo $lw_widgets_json;?></textarea>
+                <textarea style="display:none;" id="<?php echo $lw_widgets_json_string;?>" name="<?php echo $lw_widgets_json_string;?>"><?php echo $lw_widgets_json;?></textarea>
             </div>
         </div>
         <script>
             jQuery(document).ready(function(){
-                jQuery('.btn-show-settings').click(function(){
+                jQuery('.btn-show-settings[data-lw-id="<?php echo $id;?>"]').click(function(){
                     if(jQuery(this).hasClass('first-clicked')){
                         return;
                     }else{
@@ -58,10 +116,32 @@ function post_options_code_widget( $post ) {
         </script>
     <?php
         require_once(dirname(__FILE__).'/custom-html.php');
-        load_custom_html($id); 
+        load_custom_html($id);  
     ?>
     </div>
 <?php
+}
+
+function post_options_page_sidebar_position( $post ) { 
+    wp_nonce_field( plugin_basename( __FILE__ ), $post->post_type . '_noncename' ); 
+    $value = get_post_meta( $post->ID, 'lw_page_sidebar_position', true);
+    if(!$value) {
+        $value = 'hide';
+    }
+
+    $arr = [];
+    array_push($arr, [ 'text' => 'No sidebar', 'value' => 'hide' ]);
+    array_push($arr, [ 'text' => 'Left', 'value' => 'left' ]);
+    array_push($arr, [ 'text' => 'Right', 'value' => 'right' ]);   
+	?> 
+        <select name="lw_page_sidebar_position" id="lw_page_sidebar_position">
+            <?php foreach($arr as $item){
+                $selected = $value == $item['value'] ? 'selected' : ''; 
+            ?>
+                <option value="<?php echo $item['value'];?>" <?php echo $selected;?> ><?php echo $item['text'];?></option>
+            <?php  } // end for  ?>
+        </select>
+    <?php
 }
 
 /** 
@@ -83,12 +163,18 @@ function save_post_options_widget( $post_id ) {
         return;
 
     // OK, we're authenticated: we need to find and save the data
-    if( 'post' == $_POST['post_type'] || 'page' == $_POST['post_type'] ) {
-        if ( !current_user_can( 'edit_post', $post_id ) ) {
-            return;
-        } else {
-            update_post_meta( $post_id, 'lw_widgets_json', $_POST['lw_widgets_json'] );
-        }
+    if( 'post' == $_POST['post_type'] || 'page' == $_POST['post_type'] || 'lw-template' == $_POST['post_type']) { 
+        if(isset($_POST['lw_widgets_json']))
+            update_post_meta( $post_id, 'lw_widgets_json', $_POST['lw_widgets_json'] );              
+
+        if(isset($_POST['lw_widgets_json_top']))
+            update_post_meta( $post_id, 'lw_widgets_json_top', $_POST['lw_widgets_json_top'] );
+
+        if(isset($_POST['lw_widgets_json_bottom']))
+            update_post_meta( $post_id, 'lw_widgets_json_bottom', $_POST['lw_widgets_json_bottom'] ); 
+
+        if(isset($_POST['lw_page_sidebar_position']))
+            update_post_meta( $post_id, 'lw_page_sidebar_position', $_POST['lw_page_sidebar_position'] );
     }
 }
 ?>

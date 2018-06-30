@@ -14,6 +14,8 @@ require_once 'parts/sidebar.php';
 require_once 'parts/nav.php';
 require_once 'parts/logo.php';
 require_once 'parts/slider.php';
+require_once 'parts/template.php';
+require_once 'parts/theme-setting.php';
 
 // admin header
 add_action('admin_head', 'my_custom_fonts');
@@ -28,4 +30,40 @@ register_nav_menus( array(
     'header' => 'Header menu'
 ));
 
+function get_sidebar_tag_arr($position){ 
+    $position_arr = array();
+    
+    if($position == 'left'){
+        $position_arr['first'] = '
+            <div class="row">
+                <div class="col-md-3 col-12">';
+        $position_arr['middle'] = '
+                </div>
+                <div class="col-md-9 col-12">';
+        $position_arr['end'] = '
+                </div>
+            </div>';
+    }else if($position == 'right'){
+        $position_arr['first'] = '
+            <div class="row">
+                <div class="col-md-9 col-12">';
+        $position_arr['middle'] = '
+                </div>
+                <div class="col-md-3 col-12">';
+        $position_arr['end'] = '
+                </div>
+            </div>';
+    } else {
+        $position_arr['first'] = '
+            <div class="row">
+                <div class="col-12">';
+        $position_arr['middle'] = '
+                </div>
+                <div class="col-12">';
+        $position_arr['end'] = '
+                </div>
+            </div>';
+    }
+    return $position_arr;
+}
 ?>

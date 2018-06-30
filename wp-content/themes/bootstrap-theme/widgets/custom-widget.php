@@ -45,11 +45,11 @@ class lw_widget extends WP_Widget {
     }
 
     // Creating widget front-end    
-    public function widget_post($postID) {
-        $meta = get_post_meta($postID, 'lw_widgets_json');
+    public function widget_post($postID, $key='lw_widgets_json') {
+        $meta = get_post_meta($postID, $key);
 
         if($meta){             
-            $lw_widgets_json = json_decode($meta[0]);
+            $lw_widgets_json = json_decode($meta[0]); 
 
             global $lw_widget_arr;
 
@@ -64,8 +64,10 @@ class lw_widget extends WP_Widget {
             }   
 
             // rows 
-            foreach($lw_widgets_json->row_arr as $row){
-                $this->get_row($row);
+            if(property_exists($lw_widgets_json, 'row_arr')){
+                foreach($lw_widgets_json->row_arr as $row){
+                    $this->get_row($row);
+                }
             }
         }
     }  

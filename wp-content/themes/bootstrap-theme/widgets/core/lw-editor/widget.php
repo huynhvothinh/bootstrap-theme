@@ -15,12 +15,8 @@ class lw_editor{
     }
     public function widget($arr){    
         $html = '';
-        if(is_array($arr)){
-            foreach($arr as $field){
-                if($field->field == 'lw-editor'){
-                    $html = $field->value;
-                }
-            }
+        if(is_array($arr)){ 
+            $html = $arr['lw-editor']; 
         }
         echo $html;        
     }

@@ -11,41 +11,38 @@ $position_arr = get_sidebar_tag_arr($sidebar_position);
 $widget = new lw_widget();
 ?>
 
-<div class="container lw-widget-top">
+<div class="lw-widget-top">
     <?php $widget->widget_post($post->ID, 'lw_widgets_json_top');?>
 </div>
 
-<div class="container lw-widget-content">
-<?php
-    // 
-    echo $position_arr['first'];
+<div class="lw-widget-content">
+    <?php
+        // 
+        echo $position_arr['first'];
 
-    if($sidebar_position == 'left'){
-        dynamic_sidebar('lw_sidebar');
-    }else{        
-        the_content();
-
-        $widget->widget_post($post->ID);
-    }
-    
-    //
-    echo $position_arr['middle'];
-
-    if($sidebar_position == 'left'){
-        the_content();
-
-        $widget = new lw_widget();
-        $widget->widget_post($post->ID);
-    }else{        
-        dynamic_sidebar('lw_sidebar');
-    }
-    
-    //
-    echo $position_arr['end'];
-?>
+        if($sidebar_position == 'left'){
+            dynamic_sidebar('lw_sidebar');
+        }else{        
+            the_content();
+            $widget->widget_post($post->ID);
+        }
+        
+        //
+        echo $position_arr['middle'];
+        
+        if($sidebar_position == 'right'){
+            dynamic_sidebar('lw_sidebar');
+        }else if($sidebar_position == 'left'){        
+            the_content();
+            $widget->widget_post($post->ID);
+        }
+        
+        //
+        echo $position_arr['end'];
+    ?>
 </div>
 
-<div class="container lw-widget-bottom">
+<div class="lw-widget-bottom">
     <?php $widget->widget_post($post->ID, 'lw_widgets_json_bottom');?>
 </div>
 

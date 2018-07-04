@@ -15,30 +15,12 @@ class lw_short_news{
         $field_group_html = get_field_group_html('Short news', 'lw-short-news', $fields_html);
         echo $field_group_html;
     }
-    public function widget($arr){    
-        $title = '';
-        $image = '';
-        $content = '';
-        $button = '';
-
-        if(is_array($arr)){
-            foreach($arr as $field){
-                if($field->field == 'lw-title'){
-                    $title = $field->value;
-                }else if($field->field == 'lw-image'){
-                    $image = $field->value;
-                }else if($field->field == 'lw-content'){
-                    $content = $field->value;
-                }else if($field->field == 'lw-button'){
-                    $button = $field->value;
-                }
-            }
-        }
+    public function widget($arr){
     ?>
-        <h3 class="lw-title"><?php echo $title;?></h3>
-        <div class="lw-image"><?php echo $image;?></div>
-        <div class="lw-content"><?php echo $content;?></div>
-        <div class="lw-button"><?php echo $button;?></div>
+        <h3 class="lw-title"><?php echo $arr['lw-title'];?></h3>
+        <div class="lw-image"><div><?php echo $arr['lw-image'];?></div></div>
+        <div class="lw-content"><div><?php echo $arr['lw-content'];?></div></div>
+        <div class="lw-button"><div><?php echo $arr['lw-button'];?></div></div>
     <?php        
     }
 }

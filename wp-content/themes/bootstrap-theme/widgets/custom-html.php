@@ -1,5 +1,5 @@
 <?php
-function load_custom_html( $id ) { 
+function load_custom_html( $id, $add_editor=true ) { 
 ?>
     <div class="settings lw-popup" data-lw-id="<?php echo $id; ?>">
         <div class="lw-popup-content">
@@ -36,16 +36,18 @@ function load_custom_html( $id ) {
                 </div>
             </div>
         </div>
-        <div class="lw-editor lw-popup">
-            <div class="lw-popup-content">
-                <div class="lw-popup-header editor-header"><a class="close" href="#">Close</a></div>
-                <div class="lw-popup-body">
-                    <?php
-                        wp_editor( '', 'lw-editor' );
-                    ?>
+        <?php if($add_editor){?>
+            <div class="lw-editor lw-popup">
+                <div class="lw-popup-content">
+                    <div class="lw-popup-header editor-header"><a class="close" href="#">Close</a></div>
+                    <div class="lw-popup-body">
+                        <?php
+                            wp_editor( '', 'lw-editor' );
+                        ?>
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php } // end if check add_editor ?>
     </div>
 <?php
 }

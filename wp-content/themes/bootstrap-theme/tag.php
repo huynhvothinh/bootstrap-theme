@@ -1,55 +1,14 @@
 <?php 
 get_header();
 
-// find category and parents, to map template
-// priority:
-// - current cat template
-// - parent template
-// - default template
-$category = get_queried_object(); 
-$cat_id_arr = array();
-array_push($cat_id_arr, $category->term_id);
-for($i=0; $i<5; $i++){
-    if($category->parent){
-        $category = get_category($category->parent);
-        array_push($cat_id_arr, $category->term_id);
-    }else{
-        break;
-    }
-}
-
-// template setting value
 $value = get_option('lw_settings');   
 $lw_json_settings = json_decode($value);
 $template_id = 0;
 if(is_object($lw_json_settings)){
     $arr = (array)$lw_json_settings;
-
-    // set default, before find template
-    if(isset($arr['template-category-default'])){
-        if($arr['template-category-default']){
-            $template_id = $arr['template-category-default'];
-        }
-    }
-
-    // find template
-    if(isset($arr['template-category-arr'])){
-        if($arr['template-category-arr']){
-            $template_arr = $arr['template-category-arr'];
-            $found = false;
-            foreach($cat_id_arr as $cat_id){ 
-                foreach($template_arr as $temp){
-                    $temp = (array)$temp; 
-                    if($temp['category-id'] == $cat_id && $temp['template-id']){
-                        $template_id = $temp['template-id'];
-                        $found = true; 
-                        break;
-                    }
-                }
-                if($found){
-                    break;
-                }
-            }
+    if(isset($arr['template-tag'])){
+        if($arr['template-tag']){
+            $template_id = $arr['template-tag'];
         }
     }
 }  

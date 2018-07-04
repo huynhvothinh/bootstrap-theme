@@ -1,54 +1,70 @@
 <?php 
 get_header();
 
-$post = get_page_by_path( 'search', OBJECT, 'lw-template' );
-
-$sidebar_position = get_post_meta( $post->ID, 'lw_page_sidebar_position', true);
-if(!$sidebar_position) {
-    $sidebar_position = 'hide';
-}
-// 
-$position_arr = get_sidebar_tag_arr($sidebar_position);
-$widget = new lw_widget();
+$value = get_option('lw_settings');   
+$lw_json_settings = json_decode($value);
+$template_id = 0;
+if(is_object($lw_json_settings)){
+    $arr = (array)$lw_json_settings;
+    if(isset($arr['template-search'])){
+        if($arr['template-search']){
+            $template_id = $arr['template-search'];
+        }
+    }
+}  
 ?>
 
-<div class="container lw-widget-top">
-    <?php $widget->widget_post($post->ID, 'lw_widgets_json_top');?>
-</div>
-
-<div class="container lw-widget-content">
 <?php
+if($template_id > 0){?>
+
+    <?php
+    $post = get_post($template_id);
+
+    $sidebar_position = get_post_meta( $post->ID, 'lw_page_sidebar_position', true);
+    if(!$sidebar_position) {
+        $sidebar_position = 'hide';
+    }
     // 
-    echo $position_arr['first'];
+    $position_arr = get_sidebar_tag_arr($sidebar_position);
+    $widget = new lw_widget();
+    ?>
 
-    if($sidebar_position == 'left'){
-        dynamic_sidebar('lw_sidebar');
-    }else{        
-        the_content();
+    <div class="container lw-widget-top">
+        <?php $widget->widget_post($post->ID, 'lw_widgets_json_top');?>
+    </div>
 
-        $widget->widget_post($post->ID);
-    }
-    
-    //
-    echo $position_arr['middle'];
+    <div class="container lw-widget-content">
+    <?php
+        // 
+        echo $position_arr['first'];
 
-    if($sidebar_position == 'left'){
-        the_content();
+        if($sidebar_position == 'left'){
+            dynamic_sidebar('lw_sidebar');
+        }else{        
+            the_content();
+            $widget->widget_post($post->ID);
+        }
+        
+        //
+        echo $position_arr['middle'];
+        
+        if($sidebar_position == 'right'){
+            dynamic_sidebar('lw_sidebar');
+        }else if($sidebar_position == 'left'){        
+            the_content();
+            $widget->widget_post($post->ID);
+        }
+        
+        //
+        echo $position_arr['end'];
+    ?>
+    </div>
 
-        $widget = new lw_widget();
-        $widget->widget_post($post->ID);
-    }else{        
-        dynamic_sidebar('lw_sidebar');
-    }
-    
-    //
-    echo $position_arr['end'];
-?>
-</div>
+    <div class="container lw-widget-bottom">
+        <?php $widget->widget_post($post->ID, 'lw_widgets_json_bottom');?>
+    </div>
 
-<div class="container lw-widget-bottom">
-    <?php $widget->widget_post($post->ID, 'lw_widgets_json_bottom');?>
-</div>
+<?php } // end if template_id ?>
 
 <?php
 get_footer();?> 

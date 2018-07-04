@@ -59,18 +59,22 @@ function get_item_setting_html(){
     $html = get_textbox_html('Item name', 'lw-name', true);
     $html .= get_checkbox_html('Display name', 'lw-display-name', true);
     $html .= get_textbox_html('CSS class', 'lw-css-class', true);
+    $html .= get_textbox_html('Background image url', 'lw-background-image-url', true);
     return $html;
 }
 function get_column_setting_html(){
     $html = get_textbox_html('Column name', 'lw-name', true);
     $html .= get_checkbox_html('Display name', 'lw-display-name', true);
     $html .= get_textbox_html('CSS class', 'lw-css-class', true);
+    $html .= get_textbox_html('Background image url', 'lw-background-image-url', true);
     return get_popup_html('column', $html);
 }
 function get_row_setting_html(){
     $html = get_textbox_html('Row name', 'lw-name', true);
     $html .= get_checkbox_html('Display name', 'lw-display-name', true);
-    $html .= get_textbox_html('CSS class', 'lw-css-class', true);    
+    $html .= get_textbox_html('CSS class', 'lw-css-class', true);  
+    $html .= get_textbox_html('Background image url', 'lw-background-image-url', true);
+    $html .= get_checkbox_html('Full width', 'lw-full-width', true);  
     return get_popup_html('row', $html);
 }
 ?>

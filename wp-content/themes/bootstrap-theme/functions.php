@@ -22,7 +22,8 @@ add_action('admin_head', 'my_custom_fonts');
 function my_custom_fonts() {
     echo '<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">';
     echo '<link rel="stylesheet" href="/wp-content/themes/bootstrap-theme/assets-admin/css/styles.css">';
-    echo '<script src="/wp-content/themes/bootstrap-theme/assets-admin/js/scripts.js"></script>';
+    echo '<script src="/wp-content/themes/bootstrap-theme/assets-admin/js/widget.js"></script>';
+    echo '<script src="/wp-content/themes/bootstrap-theme/assets-admin/js/theme-setting.js"></script>';
 }
 
 // header menu
@@ -54,15 +55,9 @@ function get_sidebar_tag_arr($position){
                 </div>
             </div>';
     } else {
-        $position_arr['first'] = '
-            <div class="row">
-                <div class="col-12">';
-        $position_arr['middle'] = '
-                </div>
-                <div class="col-12">';
-        $position_arr['end'] = '
-                </div>
-            </div>';
+        $position_arr['first'] = '';
+        $position_arr['middle'] = '';
+        $position_arr['end'] = '';
     }
     return $position_arr;
 }

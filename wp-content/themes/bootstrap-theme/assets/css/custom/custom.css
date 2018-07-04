@@ -1,0 +1,16 @@
+@import 'lw-menu.css';
+@import 'lw-footer.css';
+@import 'lw-slider-feedback.css';
+
+.lw-border-top{
+    border-top: 5px solid #2eab67;
+}
+.lw-widget-title{
+    text-align: center;
+    text-transform: uppercase;
+    background-color: #f2f2f2;
+    padding: 10px;
+}
+.lw-widget-content{
+    min-height: 400px;
+}

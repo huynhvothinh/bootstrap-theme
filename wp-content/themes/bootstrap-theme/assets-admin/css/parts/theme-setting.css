@@ -1,0 +1,8 @@
+.template-category, 
+.template-category-single{
+    display: none;
+}
+.template-category.active,
+.template-category-single.active{
+    display: table-row;
+}

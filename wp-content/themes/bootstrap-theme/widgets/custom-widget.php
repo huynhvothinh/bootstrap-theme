@@ -51,22 +51,30 @@ class lw_widget extends WP_Widget {
         if($meta){             
             $lw_widgets_json = json_decode($meta[0]); 
 
-            global $lw_widget_arr;
+            if(is_object ($lw_widgets_json)){
+                global $lw_widget_arr;
 
-            $dirs = array_filter(glob(dirname(__FILE__).'/core/*'), 'is_dir');
-            foreach($dirs as $dir){ 
-                require_once $dir.'/widget.php';
-            }  
-            //
-            $dirs = array_filter(glob(dirname(__FILE__).'/custom/*'), 'is_dir');
-            foreach($dirs as $dir){ 
-                require_once $dir.'/widget.php';
-            }   
+                $dirs = array_filter(glob(dirname(__FILE__).'/core/*'), 'is_dir');
+                foreach($dirs as $dir){ 
+                    $widget_file = $dir.'/widget.php';
+                    if(file_exists($widget_file)){
+                        require_once $widget_file;
+                    }
+                }  
+                //
+                $dirs = array_filter(glob(dirname(__FILE__).'/custom/*'), 'is_dir');
+                foreach($dirs as $dir){ 
+                    $widget_file = $dir.'/widget.php';
+                    if(file_exists($widget_file)){
+                        require_once $widget_file;
+                    }
+                }   
 
-            // rows 
-            if(property_exists($lw_widgets_json, 'row_arr')){
-                foreach($lw_widgets_json->row_arr as $row){
-                    $this->get_row($row);
+                // rows 
+                if(property_exists($lw_widgets_json, 'row_arr')){
+                    foreach($lw_widgets_json->row_arr as $row){
+                        $this->get_row($row);
+                    }
                 }
             }
         }
@@ -149,17 +157,21 @@ class lw_widget extends WP_Widget {
     }
 
     function get_row($row){ 
+        $full_width_class = (property_exists($row, 'full_width') && $row->full_width)
+            ? 'container-fruit' : 'container';
         ?>
-        <div class="row <?php echo $row->css_class;?>">
-            <?php if($row->display_name){ ?>
-            <h2 class="row-title"><?php echo $row->name;?></h2>
-            <?php } // end if?>
+        <div class="<?php echo $full_width_class;?> <?php echo $row->css_class;?>">
+            <div class="row">
+                <?php if($row->display_name){ ?>
+                <h2 class="row-title"><?php echo $row->name;?></h2>
+                <?php } // end if?>
 
-            <?php             
-                foreach($row->column_arr as $column){
-                    $this->get_column($column);
-                } // end for
-            ?>
+                <?php             
+                    foreach($row->column_arr as $column){
+                        $this->get_column($column);
+                    } // end for
+                ?>
+            </div>
         </div>
         <?php
     }
@@ -167,7 +179,7 @@ class lw_widget extends WP_Widget {
         ?>
         <div class="col-md-<?php echo $column->size;?> <?php echo $column->css_class;?>">
             <?php if($column->display_name){ ?>
-            <h2 class="column-title"><?php echo $column->name;?></h2>
+            <h3 class="column-title"><?php echo $column->name;?></h3>
             <?php } // end if?>
 
             <?php             
@@ -182,13 +194,13 @@ class lw_widget extends WP_Widget {
         ?>
         <div class="item <?php echo $item->css_class;?> <?php echo $item->widget_name;?>">
             <?php if($item->display_name){ ?>
-            <h2 class="item-title"><?php echo $item->name;?></h2>
+            <h4 class="item-title"><?php echo $item->name;?></h4>
             <?php } // end if?>
 
             <?php      
                 $arr = [];       
                 foreach($item->field_arr as $field){
-                    array_push($arr, $field);
+                    $arr[$field->field] = $field->value;
                 } // end for
 
                 $widget_name = $item->widget_name;

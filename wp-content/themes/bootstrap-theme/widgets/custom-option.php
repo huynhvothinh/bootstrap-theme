@@ -63,15 +63,15 @@ function post_options_all_widgets($post){
 }
 
 function post_options_code_widget_top( $post ) { 
-    post_options_code_widget_base($post, 'top');
+    post_options_code_widget_base($post, 'top', true);
 }
 function post_options_code_widget_bottom( $post ) { 
-    post_options_code_widget_base($post, 'bottom');
+    post_options_code_widget_base($post, 'bottom', false);
 }
 function post_options_code_widget( $post ) { 
-    post_options_code_widget_base($post, '');
+    post_options_code_widget_base($post, '', false);
 }
-function post_options_code_widget_base( $post, $position = '') { 
+function post_options_code_widget_base( $post, $position = '', $add_editor=true) { 
     if($position){
         $position = '_'.$position;
     }
@@ -116,7 +116,7 @@ function post_options_code_widget_base( $post, $position = '') {
         </script>
     <?php
         require_once(dirname(__FILE__).'/custom-html.php');
-        load_custom_html($id);  
+        load_custom_html($id, $add_editor);  
     ?>
     </div>
 <?php

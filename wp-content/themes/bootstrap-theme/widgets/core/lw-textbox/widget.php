@@ -15,12 +15,8 @@ class lw_textbox{
     }
     public function widget($arr){        
         $text = '';
-        if(is_array($arr)){
-            foreach($arr as $field){
-                if($field->field == 'lw-textbox'){
-                    $text = $field->value;
-                }
-            }
+        if(is_array($arr)){  
+            $text = $arr['lw-textbox']; 
         }
         echo $text;
     }

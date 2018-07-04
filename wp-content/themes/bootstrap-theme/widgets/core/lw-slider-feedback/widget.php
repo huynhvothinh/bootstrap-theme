@@ -1,8 +1,8 @@
 <?php
 global $lw_widget_arr;
-array_push($lw_widget_arr, 'lw_slider');
+array_push($lw_widget_arr, 'lw_slider_feedback');
 
-class lw_slider{
+class lw_slider_feedback{
     public function form(){
         require_once(dirname(__FILE__).'/../../fields.php');
         
@@ -16,20 +16,20 @@ class lw_slider{
         }
 
         $fields_html = '';
-        $fields_html .= get_select_html('Slider category', 'lw-slider', $items);
+        $fields_html .= get_select_html('Slider category', 'lw-slider-feedback', $items);
         $fields_html .= '<hr>';
         $fields_html .= get_item_setting_html();
-        $field_group_html = get_field_group_html('Slider', 'lw-slider', $fields_html);
+        $field_group_html = get_field_group_html('Feedback Slider', 'lw-slider-feedback', $fields_html);
         echo $field_group_html;
     }
     public function widget($arr){
         $slider_category_slug = '';
         if(is_array($arr)){ 
-            $slider_category_slug = $arr['lw-slider']; 
+            $slider_category_slug = $arr['lw-slider-feedback']; 
         }
         
         // show slider
-        $posts = get_posts( 
+        $posts = new WP_Query( 
             array(
                 'post_type' => 'lw-slider',
                 'posts_per_page'   => 500,
@@ -48,15 +48,29 @@ class lw_slider{
         $url = '';
         $active = '';
         $slider_id = 'slider-'.$slider_category_slug;
-        if ( $posts ){
-            for($i=0; $i<count($posts); $i++){
-                $url =  get_the_post_thumbnail_url( $posts[$i]->ID, 'full');	
-                $active = ($i === 0 ? 'active' : '');
+        if ( $posts->have_posts() ){
+            $index=0;
+            global $post;
+            while ( $posts->have_posts() ) : $posts->the_post(); 
+                $active = '';
+                if($index == 0){
+                    $active = 'active';
+                    $index++;
+                } 
                 $content = $content .
-                '<div class="carousel-item '.$active.'">'
-                    .'<img class="img-fluid" src="'.$url.'">'
-                .'</div>';			
-            } 
+                '<div class="carousel-item '.$active.'">
+                    <div class="row">
+                        <div class="col-md-8 col-12">
+                            <h5 class="feedback-title">'.get_the_title().'</h5>
+                            <p class="feedback-content">'.get_the_content().'</p>
+                        </div>
+                        <div class="col-md-4 col-12 feedback-image">
+                           '.get_the_post_thumbnail( $post->ID, 'thumbnail').'
+                        </div>
+                    </div>
+                .</div>';			
+            endwhile;
+            wp_reset_postdata();
         } 
     ?>        
         <div id="<?php echo $slider_id;?>" class="carousel slide" data-ride="carousel"> 

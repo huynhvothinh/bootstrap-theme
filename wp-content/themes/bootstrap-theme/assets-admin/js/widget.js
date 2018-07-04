@@ -114,7 +114,7 @@ function getRowHtml(body_html){
 }
 function getColumnHtml(body_html){
     var column = jQuery('\
-        <div class="column col-6 box" data-index="'+(++index)+'">\
+        <div class="column col-3 box" data-index="'+(++index)+'">\
             <div class="content column-content">\
                 <div class="header column-header">\
                     Column: <strong class="column-name"></strong>\
@@ -128,10 +128,10 @@ function getColumnHtml(body_html){
                     <select class="column-size">\
                         <option value="1">1</option>\
                         <option value="2">2</option>\
-                        <option value="3">3</option>\
+                        <option value="3" selected>3</option>\
                         <option value="4">4</option>\
                         <option value="5">5</option>\
-                        <option value="6" selected>6</option>\
+                        <option value="6">6</option>\
                         <option value="7">7</option>\
                         <option value="8">8</option>\
                         <option value="9">9</option>\
@@ -287,11 +287,13 @@ function getJson(main_id){
     };
     jQuery('.lw-widget-container[data-lw-id="'+main_id+'"]').each(function(){
         jQuery(this).find('.row.box').each(function(){
-            var id, name, display_name, css_class;
+            var id, name, display_name, css_class, background_image_url, full_width;
             id = jQuery(this).attr('data-index');
             name = jQuery(this).find('.lw-row-setting .setting.lw-name').val();
             display_name = jQuery(this).find('.lw-row-setting .setting.lw-display-name').is(":checked");
             css_class = jQuery(this).find('.lw-row-setting .setting.lw-css-class').val();
+            background_image_url = jQuery(this).find('.field.box .setting.lw-background-image-url').val();
+            full_width = jQuery(this).find('.field.box .setting.lw-full-width').is(":checked");
 
             var row = {
                 'id': id,
@@ -299,16 +301,19 @@ function getJson(main_id){
                 'name': name,
                 'display_name': display_name,
                 'css_class': css_class,
+                'full_width': full_width,                
+                'background_image_url': background_image_url,
                 'column_arr': []
             }
             arr.row_arr.push(row);
 
             jQuery(this).find('.column.box').each(function(){
-                var id, name, display_name, css_class, size;
+                var id, name, display_name, css_class, size, background_image_url;
                 id = jQuery(this).attr('data-index');
                 name = jQuery(this).find('.lw-column-setting .setting.lw-name').val();
                 display_name = jQuery(this).find('.lw-column-setting .setting.lw-display-name').is(":checked");
                 css_class = jQuery(this).find('.lw-column-setting .setting.lw-css-class').val();
+                background_image_url = jQuery(this).find('.field.box .setting.lw-background-image-url').val();
                 size = jQuery(this).find('.column-size').val();
 
                 var column = {
@@ -317,17 +322,19 @@ function getJson(main_id){
                     'name': name,
                     'display_name': display_name,
                     'css_class': css_class,
+                    'background_image_url': background_image_url,
                     'size': size,
                     'item_arr': []
                 }
                 row.column_arr.push(column);
 
                 jQuery(this).find('.item.box').each(function(){
-                    var id, name, display_name, css_class, widget_name;
+                    var id, name, display_name, css_class, widget_name, background_image_url;
                     id = jQuery(this).attr('data-index');
                     name = jQuery(this).find('.field.box .setting.lw-name').val();
                     display_name = jQuery(this).find('.field.box .setting.lw-display-name').is(":checked");
                     css_class = jQuery(this).find('.field.box .setting.lw-css-class').val();
+                    background_image_url = jQuery(this).find('.field.box .setting.lw-background-image-url').val();
                     widget_name = jQuery(this).find('.widget-fields').attr('widget-name');
         
                     var item = {
@@ -336,6 +343,7 @@ function getJson(main_id){
                         'name': name,
                         'display_name': display_name,
                         'css_class': css_class,
+                        'background_image_url': background_image_url,
                         'widget_name': widget_name,
                         'field_arr': []
                     }
@@ -382,6 +390,8 @@ function load_widget(main_id){
         jQuery(row).find('.lw-row-setting .setting.lw-name').val(jsonRow['name']);
         jQuery(row).find('.lw-row-setting .setting.lw-display-name').prop('checked', jsonRow['display_name']);
         jQuery(row).find('.lw-row-setting .setting.lw-css-class').val(jsonRow['css_class']);
+        jQuery(row).find('.lw-row-setting .setting.lw-background-image-url').val(jsonRow['background_image_url']);
+        jQuery(row).find('.lw-row-setting .setting.lw-full-width').prop('checked', jsonRow['full_width']);
         
         // column
         if(!jsonRow['column_arr'])
@@ -400,6 +410,7 @@ function load_widget(main_id){
             jQuery(col).find('.lw-column-setting .setting.lw-name').val(jsonColumn['name']);
             jQuery(col).find('.lw-column-setting .setting.lw-display-name').prop('checked', jsonColumn['display_name']);
             jQuery(col).find('.lw-column-setting .setting.lw-css-class').val(jsonColumn['css_class']);
+            jQuery(col).find('.lw-column-setting .setting.lw-background-image-url').val(jsonColumn['background_image_url']);
 
             // item
             if(!jsonColumn['item_arr'])
@@ -417,6 +428,7 @@ function load_widget(main_id){
                 jQuery(item).find('.field.box .setting.lw-name').val(jsonItem['name']);
                 jQuery(item).find('.field.box .setting.lw-display-name').prop('checked', jsonItem['display_name']);
                 jQuery(item).find('.field.box .setting.lw-css-class').val(jsonItem['css_class']);
+                jQuery(item).find('.field.box .setting.lw-background-image-url').val(jsonItem['background_image_url']);
 
                 // field
                 if(!jsonItem['field_arr'])

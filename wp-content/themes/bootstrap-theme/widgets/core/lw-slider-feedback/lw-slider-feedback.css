@@ -1,0 +1,11 @@
+.lw-slider-feedback .feedback-body{
+    text-align: left;
+}
+.lw-slider-feedback .feedback-image{
+    text-align: center;
+}
+.lw-slider-feedback .feedback-image img{
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}

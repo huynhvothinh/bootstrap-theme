@@ -18,6 +18,9 @@
 .lw-menu .lw-menu-header .nav-item{
     padding: 0px 10px;
 }
+.lw-menu .lw-menu-header .nav-link:hover{
+    border-bottom: 5px solid #2eab67;
+}
 .lw-menu .lw-menu-header .current-menu-item .nav-link{
     border-bottom: 5px solid #2eab67;
 }

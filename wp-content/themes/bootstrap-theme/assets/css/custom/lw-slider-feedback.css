@@ -1,6 +1,22 @@
-.lw-slider-feedback{
-    text-align: center;
+.lw-slider-feedback {
+    padding-top: 35px;
+    padding-bottom: 35px;
 }
 .lw-slider-feedback .carousel{
     width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.lw-slider-feedback .feedback-image img{
+    border-radius: 50%;
+    max-width: 220px;
+}
+.lw-slider-feedback .feedback-title{
+    font-size: 30px;
+    text-transform: uppercase;
+    color: gray;
+}
+.lw-slider-feedback .feedback-content{
+    font-size: 25px;
+    font-style: italic;
 }

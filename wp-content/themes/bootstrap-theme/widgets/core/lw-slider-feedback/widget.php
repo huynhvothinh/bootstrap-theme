@@ -60,15 +60,17 @@ class lw_slider_feedback{
                 $content = $content .
                 '<div class="carousel-item '.$active.'">
                     <div class="row">
-                        <div class="col-md-8 col-12">
+                        <div class="col-md-8 col-12 feedback-body">
                             <h5 class="feedback-title">'.get_the_title().'</h5>
                             <p class="feedback-content">'.get_the_content().'</p>
                         </div>
                         <div class="col-md-4 col-12 feedback-image">
-                           '.get_the_post_thumbnail( $post->ID, 'thumbnail').'
+                            <div class="image-wrapper">
+                                '.get_the_post_thumbnail( $post->ID, 'lw_featured_image_1x1').'
+                            </div>
                         </div>
                     </div>
-                .</div>';			
+                </div>';			
             endwhile;
             wp_reset_postdata();
         } 

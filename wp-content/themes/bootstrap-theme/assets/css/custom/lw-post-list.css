@@ -1,0 +1,41 @@
+/* lw-project */
+.lw-post-list.lw-project a{
+    color: white;
+}
+.lw-post-list.lw-project .lw-post-excerpt{
+    display: none;
+}
+.lw-post-list.lw-project .lw-post-item{
+    position: relative;
+    padding: 0px;
+}
+.lw-post-list.lw-project .lw-post-title{
+    position: absolute;
+    bottom: 0px;
+    height: 20%;
+    width: 100%;
+    background-color: rgba(46,171,103, 0.8);
+    text-align: center;
+    color: white;
+    display: none;
+    padding-top: 15px;
+}
+.lw-post-list.lw-project .row{
+    margin: 0px;
+} 
+.lw-post-list.lw-project .lw-post-thumbnail{
+    position: relative;
+}
+.lw-post-list.lw-project .lw-image-layer{
+    background-color: rgba(46,171,103, 0.5);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    display: none;
+}
+.lw-post-list.lw-project .lw-post-item:hover .lw-image-layer,
+.lw-post-list.lw-project .lw-post-item:hover .lw-post-title{
+    display: initial; 
+}

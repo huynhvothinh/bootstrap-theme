@@ -18,9 +18,9 @@ class lw_short_news{
     public function widget($arr){
     ?>
         <h3 class="lw-title"><?php echo $arr['lw-title'];?></h3>
-        <div class="lw-image"><div><?php echo $arr['lw-image'];?></div></div>
-        <div class="lw-content"><div><?php echo $arr['lw-content'];?></div></div>
-        <div class="lw-button"><div><?php echo $arr['lw-button'];?></div></div>
+        <div class="lw-image"><div class="wrapper"><?php echo $arr['lw-image'];?></div></div>
+        <div class="lw-content"><div class="wrapper"><?php echo $arr['lw-content'];?></div></div>
+        <div class="lw-button"><div class="wrapper"><?php echo $arr['lw-button'];?></div></div>
     <?php        
     }
 }

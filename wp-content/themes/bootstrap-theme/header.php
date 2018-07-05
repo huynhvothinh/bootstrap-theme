@@ -22,6 +22,6 @@ error_reporting(E_ALL);
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-    <div class="container lw-header">
+    <div class="container-fruit lw-header">
         <?php dynamic_sidebar('lw_header_sidebar'); ?> 
     </div>

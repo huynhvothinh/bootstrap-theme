@@ -49,6 +49,10 @@ class lw_post_list{
                 $post_css_class = $arr['lw-post-css-class']; 
             }
         }
+
+        if($post_total > 24){
+            $post_total = 24;
+        }
         
         // show slider
         $posts = new WP_Query( 
@@ -67,17 +71,30 @@ class lw_post_list{
         ); 
 
         if ( $posts->have_posts() ){
-            global $post;
-            while ( $posts->have_posts() ) : $posts->the_post(); 
-            ?>
-                <div class="lw-post-item <?php echo $post_css_class;?>">
-                    <div class="lw-post-thumbnail"><?php the_post_thumbnail( $post->ID, 'thumbnail');?></div>
-                    <h5 class="lw-post-title"><?php the_title();?></h5>
-                    <div class="lw-post-excerpt"><?php the_excerpt($post->ID);?></div>
-                </div>
+        ?>
+            <div class="row">
             <?php
-            endwhile;
-        }
+                global $post;
+                while ( $posts->have_posts() ) : $posts->the_post(); 
+                ?>
+                    <div class="lw-post-item <?php echo $post_css_class;?>">
+                        <div class="lw-post-thumbnail">
+                            <?php echo get_the_post_thumbnail( $post->ID, 'lw_featured_image_1x1');?>
+                            <div class="lw-image-layer"></div>
+                        </div>
+                        <div class="lw-post-title">
+                            <h5 class="lw-title">
+                                <a href="<?php echo get_post_permalink();?>"><?php the_title();?></a>
+                            </h5>
+                        </div>
+                        <div class="lw-post-excerpt"><?php the_excerpt($post->ID);?></div>
+                    </div>
+                <?php
+                endwhile; // end while
+            ?>
+            </div>
+            <?php
+        } // end if
     }
 }
 ?>

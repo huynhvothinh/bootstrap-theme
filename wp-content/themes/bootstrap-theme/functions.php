@@ -31,6 +31,10 @@ register_nav_menus( array(
     'header' => 'Header menu'
 ));
 
+// thumbnail crop size
+add_image_size('lw_featured_image_1x1', 600, 600, true);
+add_image_size('lw_featured_image_4x3', 640, 480, true);
+
 function get_sidebar_tag_arr($position){ 
     $position_arr = array();
     

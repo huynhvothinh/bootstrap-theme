@@ -77,4 +77,40 @@ function get_row_setting_html(){
     $html .= get_checkbox_html('Full width', 'lw-full-width', true);  
     return get_popup_html('row', $html);
 }
+function get_thumbnail_size_arr(){
+    $image_sizes = array();
+    array_push($image_sizes, array(
+        'text' => 'full',
+        'value' => 'full'
+    ));
+    array_push($image_sizes, array(
+        'text' => 'medium',
+        'value' => 'medium'
+    ));
+    array_push($image_sizes, array(
+        'text' => 'thumbnail',
+        'value' => 'thumbnail'
+    ));
+    array_push($image_sizes, array(
+        'text' => 'lw_slide_image_1366x(***)',
+        'value' => 'lw_slide_image_1366x(***)'
+    ));
+    array_push($image_sizes, array(
+        'text' => 'lw_featured_image_600x600',
+        'value' => 'lw_featured_image_600x600'
+    ));
+    array_push($image_sizes, array(
+        'text' => 'lw_featured_image_400x400',
+        'value' => 'lw_featured_image_400x400'
+    ));
+    array_push($image_sizes, array(
+        'text' => 'lw_featured_image_600x450',
+        'value' => 'lw_featured_image_600x450'
+    ));
+    array_push($image_sizes, array(
+        'text' => 'lw_featured_image_400x300',
+        'value' => 'lw_featured_image_400x300'
+    ));
+    return $image_sizes;
+}
 ?>

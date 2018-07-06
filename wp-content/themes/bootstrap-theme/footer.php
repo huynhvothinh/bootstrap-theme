@@ -7,6 +7,5 @@
     <div class="lw-widget-hidden" style="display:none;">
         <?php dynamic_sidebar('lw_hidden_sidebar');?>
     </div>
-
 </body>
 </html>

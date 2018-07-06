@@ -1,15 +1,15 @@
 /* lw-project */
-.lw-post-list.lw-project a{
+.lw-project.lw-post-list a{
     color: white;
 }
-.lw-post-list.lw-project .lw-post-excerpt{
+.lw-project.lw-post-list .lw-post-excerpt{
     display: none;
 }
-.lw-post-list.lw-project .lw-post-item{
+.lw-project.lw-post-list .lw-post-item{
     position: relative;
     padding: 0px;
 }
-.lw-post-list.lw-project .lw-post-title{
+.lw-project.lw-post-list .lw-post-title{
     position: absolute;
     bottom: 0px;
     height: 20%;
@@ -20,13 +20,13 @@
     display: none;
     padding-top: 15px;
 }
-.lw-post-list.lw-project .row{
+.lw-project.lw-post-list .row{
     margin: 0px;
 } 
-.lw-post-list.lw-project .lw-post-thumbnail{
+.lw-project.lw-post-list .lw-post-thumbnail{
     position: relative;
 }
-.lw-post-list.lw-project .lw-image-layer{
+.lw-project.lw-post-list .lw-image-layer{
     background-color: rgba(46,171,103, 0.5);
     position: absolute;
     width: 100%;
@@ -35,7 +35,21 @@
     left: 0px;
     display: none;
 }
-.lw-post-list.lw-project .lw-post-item:hover .lw-image-layer,
-.lw-post-list.lw-project .lw-post-item:hover .lw-post-title{
+.lw-project.lw-post-list .lw-post-item:hover .lw-image-layer,
+.lw-project.lw-post-list .lw-post-item:hover .lw-post-title{
     display: initial; 
+}
+/* lw-blog */
+.lw-blog.lw-post-list{
+    padding: 55px 0px;
+}
+.lw-blog.lw-post-list .lw-post-item{
+    margin-bottom: 50px;
+}
+.lw-blog.lw-post-list .lw-post-thumbnail{
+    margin-bottom: 25px;
+}
+.lw-blog.lw-post-list .lw-post-title a{
+    color: black;
+    text-transform: uppercase;
 }

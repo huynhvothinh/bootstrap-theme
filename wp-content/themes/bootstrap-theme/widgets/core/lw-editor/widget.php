@@ -18,7 +18,12 @@ class lw_editor{
         if(is_array($arr)){ 
             $html = $arr['lw-editor']; 
         }
-        echo $html;        
+
+        if($arr['lw-execute-shortcode']){
+            echo do_shortcode($html);
+        }else{
+            echo $html;        
+        }
     }
 }
 

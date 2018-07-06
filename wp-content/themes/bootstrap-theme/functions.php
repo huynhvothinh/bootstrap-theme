@@ -32,8 +32,11 @@ register_nav_menus( array(
 ));
 
 // thumbnail crop size
-add_image_size('lw_featured_image_1x1', 600, 600, true);
-add_image_size('lw_featured_image_4x3', 640, 480, true);
+add_image_size('lw_slide_image_1366x(***)', 1366, 500, true);
+add_image_size('lw_featured_image_600x450', 600, 450, true);
+add_image_size('lw_featured_image_400x300', 400, 300, true);
+add_image_size('lw_featured_image_600x600', 600, 600, true);
+add_image_size('lw_featured_image_400x400', 400, 400, true);
 
 function get_sidebar_tag_arr($position){ 
     $position_arr = array();

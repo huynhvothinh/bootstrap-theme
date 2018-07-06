@@ -22,10 +22,13 @@ class lw_post_list{
             $item['value'] = $category->term_id;
             array_push($items, $item);
         }
+        
+        $image_sizes = get_thumbnail_size_arr();
 
         $fields_html = '';
         $fields_html .= get_select_html('Category', 'lw-post-category', $items);
         $fields_html .= get_textbox_html('Post total', 'lw-post-total');
+        $fields_html .= get_select_html('Image size', 'lw-image-size', $image_sizes);
         $fields_html .= get_textbox_html('Post CSS class', 'lw-post-css-class');
         $fields_html .= '<hr>';
         $fields_html .= get_item_setting_html();
@@ -36,17 +39,19 @@ class lw_post_list{
         $post_category = '';
         $post_total = 12;
         $post_css_class = '';
+        $image_size = 'full';
         if(is_array($arr)){ 
             if(isset($arr['lw-post-category'])){
                 $post_category = $arr['lw-post-category'];   
             }          
-            if(isset($arr['lw-post-total'])){
-                if(is_int($arr['lw-post-total'])){
-                    $post_total = $arr['lw-post-total'];
-                }
+            if(isset($arr['lw-post-total'])){ 
+                $post_total = $arr['lw-post-total']; 
             }      
             if(isset($arr['lw-post-css-class'])){ 
                 $post_css_class = $arr['lw-post-css-class']; 
+            }
+            if(isset($arr['lw-image-size'])){
+                $image_size = $arr['lw-image-size']; 
             }
         }
 
@@ -79,7 +84,7 @@ class lw_post_list{
                 ?>
                     <div class="lw-post-item <?php echo $post_css_class;?>">
                         <div class="lw-post-thumbnail">
-                            <?php echo get_the_post_thumbnail( $post->ID, 'lw_featured_image_1x1');?>
+                            <?php echo get_the_post_thumbnail( $post->ID, $image_size);?>
                             <div class="lw-image-layer"></div>
                         </div>
                         <div class="lw-post-title">

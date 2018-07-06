@@ -15,8 +15,11 @@ class lw_slider_feedback{
             array_push($items, $item);
         }
 
+        $image_sizes = get_thumbnail_size_arr();
+
         $fields_html = '';
         $fields_html .= get_select_html('Slider category', 'lw-slider-feedback', $items);
+        $fields_html .= get_select_html('Image size', 'lw-image-size', $image_sizes);
         $fields_html .= '<hr>';
         $fields_html .= get_item_setting_html();
         $field_group_html = get_field_group_html('Feedback Slider', 'lw-slider-feedback', $fields_html);
@@ -24,8 +27,14 @@ class lw_slider_feedback{
     }
     public function widget($arr){
         $slider_category_slug = '';
+        $image_size = 'full';
         if(is_array($arr)){ 
-            $slider_category_slug = $arr['lw-slider-feedback']; 
+            if(isset($arr['lw-slider-feedback'])){
+                $slider_category_slug = $arr['lw-slider-feedback']; 
+            }
+            if(isset($arr['lw-image-size'])){
+                $image_size = $arr['lw-image-size']; 
+            }
         }
         
         // show slider
@@ -66,7 +75,7 @@ class lw_slider_feedback{
                         </div>
                         <div class="col-md-4 col-12 feedback-image">
                             <div class="image-wrapper">
-                                '.get_the_post_thumbnail( $post->ID, 'lw_featured_image_1x1').'
+                                '.get_the_post_thumbnail( $post->ID, $image_size).'
                             </div>
                         </div>
                     </div>

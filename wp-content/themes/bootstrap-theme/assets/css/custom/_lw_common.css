@@ -6,6 +6,9 @@
 .lw-border-top{
     border-top: 8px solid #2eab67;
 }
+.lw-border-bottom{
+    border-bottom: 8px solid #2eab67;
+}
 .lw-widget-title{
     text-align: center;
     text-transform: uppercase;
@@ -19,4 +22,11 @@
     max-width: 1366px;
     margin-left: auto;
     margin-right: auto;
+}
+.lw-flex-center{
+    display: flex;
+    align-items: center;
+}
+.lw-background-gray{
+    background-color: #4d4d4d;
 }

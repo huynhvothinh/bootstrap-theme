@@ -15,17 +15,32 @@ add_action( 'save_post', 'save_post_options_widget' );
  * 
  */
 function post_options_widget() { 
-    // add_meta_box( 'sidebar_position', __( 'LW Page Sidebar position' ), 'post_options_page_sidebar_position', ['page'], 'normal', 'high' );
-    // add_meta_box( 'post_options_top', __( 'LW Top Custom Widgets' ), 'post_options_code_widget_top', ['post', 'page','lw-template'], 'normal', 'high' );
-    // add_meta_box( 'post_options', __( 'LW Custom Widgets' ), 'post_options_code_widget', ['post', 'page','lw-template'], 'normal', 'high' );
-    // add_meta_box( 'post_options_bottom', __( 'LW Bottom Custom Widgets' ), 'post_options_code_widget_bottom', ['post', 'page','lw-template'], 'normal', 'high' );
-
-    add_meta_box( 'post_options_all', __( 'LW Custom Widgets' ), 'post_options_all_widgets', ['post', 'page','lw-template'], 'normal', 'high' );
+    add_meta_box( 'post_options_all', __( 'LW Custom Widgets' ), 'post_options_all_widgets', ['page','lw-template'], 'normal', 'high' );
 }
 
 function post_options_all_widgets($post){
+    $use_default = get_post_meta( $post->ID, 'lw_use_default', true);
+    $checked = $use_default ? 'checked' : '';
+
+    if(is_page()){
 ?>
-    <table border="1" style="width:100%; max-width:600px;">
+    <h3><label for="lw_use_default">Use default template</label>
+    <input type="checkbox" name="lw_use_default" id="lw_use_default" <?php echo $checked;?>></h3>
+<?php 
+    } // end is page?>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('#lw_use_default').change(function(){
+                if(jQuery(this).is(":checked")){
+                    jQuery('#lw_setting_table').hide();
+                }else{
+                    jQuery('#lw_setting_table').show();
+                }
+            });
+            jQuery('#lw_use_default').change();
+        });
+    </script>
+    <table id="lw_setting_table" border="1" style="width:100%; max-width:600px;">
         <tbody>
             <tr>
                 <td colspan="2"><h4>HEADER</h4></td>
@@ -86,7 +101,7 @@ function post_options_code_widget_base( $post, $position = '', $add_editor=true)
 ?>
     <div class="widget" data-lw-id="<?php echo $id;?>">
         <div class="lw-buttons">
-            <input type="button" class="btn-show-settings button button-primary" data-lw-id="<?php echo $id;?>" value="Settings">
+            <input type="button" class="btn-show-settings button button-primary" data-lw-id="<?php echo $id;?>" value="Settings">            
             <div class="lw_widgets_json" data-lw-id="<?php echo $id;?>">
                 <textarea style="display:none;" id="<?php echo $lw_widgets_json_string;?>" name="<?php echo $lw_widgets_json_string;?>"><?php echo $lw_widgets_json;?></textarea>
             </div>
@@ -163,7 +178,7 @@ function save_post_options_widget( $post_id ) {
         return;
 
     // OK, we're authenticated: we need to find and save the data
-    if( 'post' == $_POST['post_type'] || 'page' == $_POST['post_type'] || 'lw-template' == $_POST['post_type']) { 
+    if('page' == $_POST['post_type'] || 'lw-template' == $_POST['post_type']) { 
         if(isset($_POST['lw_widgets_json']))
             update_post_meta( $post_id, 'lw_widgets_json', $_POST['lw_widgets_json'] );              
 
@@ -175,6 +190,11 @@ function save_post_options_widget( $post_id ) {
 
         if(isset($_POST['lw_page_sidebar_position']))
             update_post_meta( $post_id, 'lw_page_sidebar_position', $_POST['lw_page_sidebar_position'] );
+            
+        if(isset($_POST['lw_use_default']))
+            update_post_meta( $post_id, 'lw_use_default', $_POST['lw_use_default'] );
+        else
+            update_post_meta( $post_id, 'lw_use_default', false);
     }
 }
 ?>

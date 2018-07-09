@@ -11,6 +11,7 @@ function get_data_json(){
             'template-search': '',
             'template-tag': '',
             'template-single-default': '',
+            'template-page-default': '',
             'template-category-default': '',
             'template-category-arr': [],
             'template-category-single-arr': []
@@ -20,6 +21,7 @@ function get_data_json(){
         settingJson['template-tag'] = jQuery('.dropdown-template.template-tag').val();
         settingJson['template-category-default'] = jQuery('.dropdown-template.template-category-default').val();
         settingJson['template-single-default'] = jQuery('.dropdown-template.template-single-default').val();
+        settingJson['template-page-default'] = jQuery('.dropdown-template.template-page-default').val();
 
         jQuery('tr.template-category').each(function(){
             settingJson['template-category-arr'].push({
@@ -46,6 +48,7 @@ function load_data(){
         jQuery('.dropdown-template.template-tag').val(settingJson['template-tag']);
         jQuery('.dropdown-template.template-category-default').val(settingJson['template-category-default']);
         jQuery('.dropdown-template.template-single-default').val(settingJson['template-single-default']);
+        jQuery('.dropdown-template.template-page-default').val(settingJson['template-page-default']);
 
         var arr = [];
         arr = settingJson['template-category-arr'];

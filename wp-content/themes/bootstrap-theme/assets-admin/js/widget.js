@@ -1,6 +1,7 @@
 var index = 0; 
+var set_editor = false;
 
-function widget_init(id){
+function widget_init(id){    
     var widget = jQuery('.widget[data-lw-id="'+id+'"]');
 
     // btn setting of widgets
@@ -40,14 +41,18 @@ function widget_init(id){
         jQuery(this).closest('.lw-popup').toggleClass('active');         
     }); 
     // btn close default wordpress editor
-    jQuery(widget).find('.lw-editor.lw-popup .close').click(function(){
-        var index = jQuery('.lw-editor.lw-popup').attr('data-index');
-        var item = jQuery('.item[data-index="'+index+'"]');
-        var fieldKey = jQuery('.lw-editor.lw-popup').attr('data-field');
-        jQuery('.lw-editor.lw-popup').toggleClass('active');
-        jQuery(item).find('.field-value.textarea[field-key="'+fieldKey+'"]').val(tinymce.editors['lw-editor'].getContent());
-        tinymce.editors['lw-editor'].setContent('');
-    });
+    if(!set_editor){
+        set_editor = true;
+        jQuery('.lw-editor.lw-popup .close').click(function(){ 
+            var index = jQuery('.lw-editor.lw-popup').attr('data-index');
+            var item = jQuery('.item[data-index="'+index+'"]');
+            var fieldKey = jQuery('.lw-editor.lw-popup').attr('data-field');
+            jQuery('.lw-editor.lw-popup').toggleClass('active');
+            jQuery(item).find('.field-value.textarea[field-key="'+fieldKey+'"]').val(tinymce.editors['lw-editor'].getContent());
+            tinymce.editors['lw-editor'].setContent(''); 
+            jQuery('.lw-editor.lw-popup').closest('.widget-inside').hide();
+        });
+    }
                             
     // get value of json
     jQuery('.close[data-lw-id="'+id+'"]').click(function(){ 
@@ -65,8 +70,10 @@ function getRowHtml(body_html){
         <div class="row box" data-index="'+(++index)+'">\
             <div class="header row-header">\
                 Row: <strong class="row-name"></strong>\
-                <a href="#" class="btn btn-add btn-add-column" >Add Column</a>  \
+                / width: <strong class="row-width"></strong>\
+                / css: <strong class="row-css"></strong>\
                 <div class="right">\
+                    <a href="#" class="btn btn-add btn-add-column" >Add Column</a>  \
                     <a href="#" class="btn btn-edit btn-edit-row" ><i class="fas fa-edit"></i></a>  \
                     <a href="#" class="btn btn-delete btn-delete-row" ><i class="fas fa-trash"></i></a>  \
                     <a href="#" class="btn btn-up btn-up-row" ><i class="fas fa-caret-square-up"></i></a>  \
@@ -89,7 +96,10 @@ function getRowHtml(body_html){
 
     jQuery(row).find('.lw-row-setting .close').click(function(e){  
         e.preventDefault();         
-        jQuery(this).closest('.row').find('.row-name').html(jQuery(this).closest('.lw-popup').find('.lw-name').val());
+        jQuery(this).closest('.row').find('.row-name').html(jQuery(this).closest('.lw-popup').find('.lw-name').val());     
+        jQuery(this).closest('.row').find('.row-width').html(jQuery(this).closest('.lw-popup').find('.lw-width').val());  
+        jQuery(this).closest('.row').find('.row-css').html(jQuery(this).closest('.lw-popup').find('.lw-css-class').val());          
+        
         jQuery(this).closest('.lw-popup').toggleClass('active');
     });
 
@@ -118,8 +128,8 @@ function getColumnHtml(body_html){
             <div class="content column-content">\
                 <div class="header column-header">\
                     Column: <strong class="column-name"></strong>\
-                    <a href="#" class="btn btn-add btn-add-item" data-index="'+index+'" >Add Item</a>  \
                     <div class="right">\
+                        <a href="#" class="btn btn-add btn-add-item" data-index="'+index+'" >Add Item</a>  \
                         <a href="#" class="btn btn-edit btn-edit-column" ><i class="fas fa-edit"></i></a>  \
                         <a href="#" class="btn btn-delete btn-delete-column" ><i class="fas fa-trash"></i></a>  \
                         <a href="#" class="btn btn-up btn-up-column" ><i class="fas fa-caret-square-up"></i></a>  \
@@ -245,6 +255,9 @@ function getItemHtml(body_html, item_title=''){
 
     jQuery(item).find('.lw-editor-call').click(function(e){
         e.preventDefault();
+
+        jQuery('.lw-editor.lw-popup').closest('.widget-inside').show();
+        
         var value = jQuery(this).parent().find('.lw-editor').val();
         var fieldKey = jQuery(this).parent().find('.lw-editor').attr('field-key');
         var index = jQuery(this).closest('.item').attr('data-index');
@@ -293,7 +306,8 @@ function getJson(main_id){
             display_name = jQuery(this).find('.lw-row-setting .setting.lw-display-name').is(":checked");
             css_class = jQuery(this).find('.lw-row-setting .setting.lw-css-class').val();
             background_image_url = jQuery(this).find('.field.box .setting.lw-background-image-url').val();
-            full_width = jQuery(this).find('.field.box .setting.lw-full-width').is(":checked");
+            background_color = jQuery(this).find('.field.box .setting.lw-background-color').val();
+            full_width = jQuery(this).find('.field.box .setting.lw-full-width').val();
 
             var row = {
                 'id': id,
@@ -303,6 +317,7 @@ function getJson(main_id){
                 'css_class': css_class,
                 'full_width': full_width,                
                 'background_image_url': background_image_url,
+                'background_color': background_color,
                 'column_arr': []
             }
             arr.row_arr.push(row);
@@ -387,11 +402,14 @@ function load_widget(main_id){
         jQuery('.lw-widget-container[data-lw-id="'+main_id+'"]').append(row);
 
         jQuery(row).find('.header .row-name').html(jsonRow['name']);
+        jQuery(row).find('.header .row-width').html(jsonRow['full_width']);
+        jQuery(row).find('.header .row-css').html(jsonRow['css_class']);
         jQuery(row).find('.lw-row-setting .setting.lw-name').val(jsonRow['name']);
         jQuery(row).find('.lw-row-setting .setting.lw-display-name').prop('checked', jsonRow['display_name']);
         jQuery(row).find('.lw-row-setting .setting.lw-css-class').val(jsonRow['css_class']);
         jQuery(row).find('.lw-row-setting .setting.lw-background-image-url').val(jsonRow['background_image_url']);
-        jQuery(row).find('.lw-row-setting .setting.lw-full-width').prop('checked', jsonRow['full_width']);
+        jQuery(row).find('.lw-row-setting .setting.lw-background-color').val(jsonRow['background_color']);
+        jQuery(row).find('.lw-row-setting .setting.lw-full-width').val(jsonRow['full_width']);
         
         // column
         if(!jsonRow['column_arr'])

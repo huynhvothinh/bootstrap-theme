@@ -76,8 +76,12 @@ function display_lw_settings(){
                     <td><?php dropdown_template($template_arr, 'template-tag', '');?></td>
                 </tr>
                 <tr class="template-single-default page-template">
-                    <td>Post page default</td>
+                    <td>Post default</td>
                     <td><?php dropdown_template($template_arr, 'template-single-default', '');?></td>
+                </tr>
+                <tr class="template-page-default page-template">
+                    <td>Page default</td>
+                    <td><?php dropdown_template($template_arr, 'template-page-default', '');?></td>
                 </tr>
                 <tr class="template-category-default page-template">
                     <td>Category page default</td>

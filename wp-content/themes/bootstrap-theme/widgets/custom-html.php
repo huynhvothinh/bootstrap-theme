@@ -36,19 +36,21 @@ function load_custom_html( $id, $add_editor=true ) {
                 </div>
             </div>
         </div>
-        <?php if($add_editor){?>
-            <div class="lw-editor lw-popup">
-                <div class="lw-popup-content">
-                    <div class="lw-popup-header editor-header"><a class="close" href="#">Close</a></div>
-                    <div class="lw-popup-body">
-                        <?php
-                            wp_editor( '', 'lw-editor' );
-                        ?>
-                    </div>
+    </div>    
+    <?php if($add_editor){?>
+        <div class="lw-editor lw-popup">
+            <div class="lw-popup-content">
+                <div class="lw-popup-header editor-header"><a class="close" href="#">Close</a></div>
+                <div class="lw-popup-body">
+                    <?php
+                        wp_editor( '', 'lw-editor', array( 
+                            'tinymce' => true,
+                        ));
+                    ?>
                 </div>
             </div>
-        <?php } // end if check add_editor ?>
-    </div>
+        </div>
+    <?php } // end if check add_editor ?>
 <?php
 }
 ?>

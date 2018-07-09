@@ -66,12 +66,25 @@ class lw_slider_feedback{
                     $active = 'active';
                     $index++;
                 } 
+
+                // info
+                $lw_slider_info_1 = get_post_meta( $post->ID, 'lw_slider_info_1', true);
+                if(!$lw_slider_info_1){
+                    $lw_slider_info_1 = '';
+                }
+                $lw_slider_info_2 = get_post_meta( $post->ID, 'lw_slider_info_2', true);
+                if(!$lw_slider_info_2){
+                    $lw_slider_info_2 = '';
+                }
+
                 $content = $content .
                 '<div class="carousel-item '.$active.'">
                     <div class="row">
                         <div class="col-md-8 col-12 feedback-body">
                             <h5 class="feedback-title">'.get_the_title().'</h5>
-                            <p class="feedback-content">'.get_the_content().'</p>
+                            <div class="feedback-content">'.get_the_content().'</div>
+                            <div class="feedback-info-1">'.$lw_slider_info_1.'</div>
+                            <div class="feedback-info-2">'.$lw_slider_info_2.'</div>
                         </div>
                         <div class="col-md-4 col-12 feedback-image">
                             <div class="image-wrapper">

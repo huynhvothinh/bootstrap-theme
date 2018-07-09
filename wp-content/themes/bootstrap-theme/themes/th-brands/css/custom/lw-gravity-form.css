@@ -4,6 +4,7 @@
     padding: 7px;
     text-transform: uppercase;
     color: white;
+    cursor: pointer;
 }
 .lw-editor .gform_wrapper .gform_footer{
     padding-right: 16px;
@@ -19,6 +20,7 @@
 .lw-editor .gform_wrapper .ginput_container{
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    text-transform: uppercase;
 }
 .lw-editor .gform_wrapper .validation_error,
 .lw-editor .gform_wrapper .gfield_description{
@@ -39,6 +41,9 @@
 .lw-editor .gform_wrapper li.gfield_error input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=button]):not([type=image]):not([type=file]), 
 .lw-editor .gform_wrapper li.gfield_error textarea{
     border: 1px solid #2eab67;
+}
+.lw-editor .gform_wrapper .gfield_radio{
+    padding-left: 25px;
 }
 .lw-editor .gforms_confirmation_message{
     color: white;
@@ -70,6 +75,9 @@
     border: 1px solid white;
     color: white;
 }
+.lw-home.lw-editor .gform_wrapper .gfield{
+    text-align: center;
+}
 .lw-home.lw-editor .gform_wrapper .gform_title{
     text-align: center;
     text-transform: uppercase;
@@ -79,4 +87,33 @@
     text-align: center;
     text-transform: uppercase;
     font-size: 16px;
+}
+/* lw-white-bg */
+.lw-white-bg.lw-editor .gform_wrapper form{
+    color: gray;
+}
+.lw-white-bg.lw-editor .gform_wrapper input[type="text"]{
+    background-color: white;
+    border: 1px solid gray;
+    color: gray;
+}
+.lw-white-bg.lw-editor .gform_wrapper .gfield_error .gfield_label, 
+.lw-white-bg.lw-editor .gform_wrapper .gfield_required{
+    color: gray!important;
+}
+/* lw-contact */
+.lw-contact.lw-editor .gform_title{
+    text-transform: uppercase;
+    font-size: 35px;
+}
+.lw-contact.lw-editor .gform_description{
+    text-transform: uppercase;
+    font-size: 18px;
+}
+.lw-contact.lw-editor .gform_wrapper input{
+    width: 100%!important;
+    border-radius: 20px;
+    padding-left: 20px!important;
+    padding-right: 20px!important;
+    border: 0px;
 }

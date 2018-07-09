@@ -15,15 +15,17 @@ class lw_page_title{
         <div class="lw-page-title">
             <h2>
             <?php
-                if ( is_archive() ) {
-                    echo __('Category: ', 'lw').get_the_archieve_title();
+                global $single;
+                if(is_tag()){
+                    echo __('Tag: ', 'lw').single_tag_title('', false);
                 }else if(is_search()){
                     echo __('Search', 'lw');
-                }else if(is_post() || is_page()){
-                    echo get_the_title();
-                }else if(is_tag()){
-                    $tag = get_tag();
-                    echo __('Tag: ', 'lw').$tag->name;
+                }else if(is_page()){
+                    echo $single->post_title;
+                }else if(is_single()){
+                    echo $single->post_title;
+                }else if ( is_archive() ) {
+                    echo __('Category: ', 'lw').get_the_archieve_title();
                 }
             ?>
             </h2>

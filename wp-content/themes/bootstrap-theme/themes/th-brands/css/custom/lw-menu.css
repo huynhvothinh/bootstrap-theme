@@ -1,16 +1,16 @@
 .lw-menu{
-    width: 100%;
+    width: 100%; 
 }
-.navbar-nav{
-    margin-left: auto;
-}
-.carousel-indicators .active{
-    background-color: #2eab67;
-}
-/* header */
 .lw-menu .navbar{
     padding: 0px;
 }
+.lw-menu .navbar-nav{
+    margin-left: auto;
+}
+.lw-menu .carousel-indicators .active{
+    background-color: #2eab67;
+}
+/* header */
 .lw-menu .lw-menu-header .nav-link{
     text-transform: uppercase;
     font-size: 18px; 
@@ -29,6 +29,9 @@
     border-bottom: 5px solid #2eab67;
 }
 /* footer */  
+.lw-menu .lw-menu-footer{
+    margin-bottom: 15px;
+}
 .lw-menu .lw-menu-footer .nav-link{
     color: white;
     text-transform: uppercase;

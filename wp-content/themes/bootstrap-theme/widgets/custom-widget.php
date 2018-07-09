@@ -61,14 +61,6 @@ class lw_widget extends WP_Widget {
                         require_once $widget_file;
                     }
                 }  
-                //
-                $dirs = array_filter(glob(dirname(__FILE__).'/custom/*'), 'is_dir');
-                foreach($dirs as $dir){ 
-                    $widget_file = $dir.'/widget.php';
-                    if(file_exists($widget_file)){
-                        require_once $widget_file;
-                    }
-                }   
 
                 // rows 
                 if(property_exists($lw_widgets_json, 'row_arr')){
@@ -137,6 +129,12 @@ class lw_widget extends WP_Widget {
 
                         // display popup
                         jQuery('.settings.lw-popup[data-lw-id="'+id+'"]').toggleClass('active');
+
+                        // remove unused editor of wordpress
+                        var count = jQuery('.lw-editor.lw-popup').length;
+                        for(var i=count-1; i > 0; i--){
+                            jQuery('.lw-editor.lw-popup')[i].remove();
+                        }
                     });   
                 });
             </script>
@@ -156,22 +154,46 @@ class lw_widget extends WP_Widget {
         return $instance;
     }
 
-    function get_row($row){ 
-        $full_width_class = (property_exists($row, 'full_width') && $row->full_width)
-            ? 'container-fruit' : 'container';
-        ?>
-        <div class="<?php echo $full_width_class;?> <?php echo $row->css_class;?>">
-            <div class="row">
-                <?php if($row->display_name){ ?>
-                <h2 class="row-title"><?php echo $row->name;?></h2>
-                <?php } // end if?>
+    function get_row($row){  
+        $full_width_class = array();
+        array_push($full_width_class, 'container');
+        array_push($full_width_class, '');
+        if(property_exists($row, 'full_width')) {
+            if($row->full_width){ 
+                if($row->full_width == 'full'){
+                    $full_width_class[0] = 'container-fruit';
+                }else if($row->full_width == 'padding'){
+                    $full_width_class[0] = 'container';
+                }else if($row->full_width == 'full+padding'){
+                    $full_width_class[0] = 'container-fruit';
+                    $full_width_class[1] = 'container';
+                } 
+            } 
+        } 
+        $styles = array();
+        if(property_exists($row, 'background_color') && $row->background_color){
+            $styles['background_color_style'] =  'background-color:'.$row->background_color ;
+        }
+        if(property_exists($row, 'background_image_url') && $row->background_image_url) {
+            $styles['background_image_style'] =  'background-image:url(\''.$row->background_image_url.'\');background-position: center;';
+        }
+        $styles_string = 'style="'.implode(';', $styles).'"';        
 
-                <?php             
-                    foreach($row->column_arr as $column){
-                        $this->get_column($column);
-                    } // end for
-                ?>
-            </div>
+        ?>
+        <div class="<?php echo $full_width_class[0] ;?> <?php echo $row->css_class;?>" <?php echo $styles_string;?>>
+            <?php echo $full_width_class[1] ? '<div class="'.$full_width_class[1].'">' : '';?>
+                <div class="row">
+                    <?php if($row->display_name){ ?>
+                    <h2 class="row-title"><?php echo $row->name;?></h2>
+                    <?php } // end if?>
+
+                    <?php             
+                        foreach($row->column_arr as $column){
+                            $this->get_column($column);
+                        } // end for
+                    ?>
+                </div>
+            <?php echo $full_width_class[1] ? '</div>' : '';?>
         </div>
         <?php
     }

@@ -11,12 +11,14 @@ class lw_search{
         echo $field_group_html;
     }
     public function widget($arr){
+        $s = isset($_GET['s']) ? $_GET['s'] : '';
         ?>
         <form action="/"> 
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="<?php _e('Search', 'lw'); ?>">
+                <input type="text" name="s" id="s"  class="form-control" 
+                    placeholder="<?php _e('Search', 'lw'); ?>" value="<?php echo $s;?>">
                 <div class="input-group-append">
-                    <button class="btn btn-default" type="submit" name="s" id="s" ><?php _e('Search', 'lw'); ?></button> 
+                    <button class="btn btn-default" type="submit" ><?php _e('Search', 'lw'); ?></button> 
                 </div>
             </div> 
         </form>

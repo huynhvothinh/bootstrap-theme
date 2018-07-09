@@ -22,8 +22,8 @@ add_action('admin_head', 'my_custom_fonts');
 function my_custom_fonts() {
     echo '<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">';
     echo '<link rel="stylesheet" href="/wp-content/themes/bootstrap-theme/assets-admin/css/styles.css">';
-    echo '<script src="/wp-content/themes/bootstrap-theme/assets-admin/js/widget.js"></script>';
-    echo '<script src="/wp-content/themes/bootstrap-theme/assets-admin/js/theme-setting.js"></script>';
+    echo '<script src="/wp-content/themes/bootstrap-theme/assets-admin/js/widget.js?t='.date('s').'"></script>';
+    echo '<script src="/wp-content/themes/bootstrap-theme/assets-admin/js/theme-setting.js?t='.date('s').'"></script>';
 }
 
 // header menu

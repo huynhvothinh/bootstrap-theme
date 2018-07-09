@@ -1,6 +1,6 @@
     <?php wp_footer(); ?>
     
-    <div class="container-fruit lw-footer">
+    <div class="lw-footer">
         <?php dynamic_sidebar('lw_footer_sidebar'); ?> 
     </div>
 

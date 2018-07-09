@@ -1,0 +1,13 @@
+.lw-search{
+    margin-bottom: 15px;
+}
+.lw-search .btn{
+    background-color: #2eab67;
+    color: white;
+}
+/* lw-footer */
+.lw-footer .lw-search form{
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}

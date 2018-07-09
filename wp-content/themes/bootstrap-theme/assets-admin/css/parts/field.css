@@ -40,3 +40,7 @@
 .lw-editor iframe{
     min-height: 300px;
 }
+.field input[type="text"]{
+    max-width: 500px;
+    width: 100%;
+}

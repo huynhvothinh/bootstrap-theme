@@ -44,8 +44,9 @@ function get_checkbox_html($title, $key, $is_setting=false){
     $result = get_field_box_html($title, $html);
     return $result;
 }
-function get_select_html($title, $key, $items){
+function get_select_html($title, $key, $items, $is_setting=false){
     $plus_key = 'field-value'; 
+    if($is_setting) $plus_key = 'setting';
     $html = '';
     $html .= '<select field-key="'.$key.'" class="'.$key.' '.$plus_key.' select">';
     foreach($items as $item){
@@ -74,8 +75,45 @@ function get_row_setting_html(){
     $html .= get_checkbox_html('Display name', 'lw-display-name', true);
     $html .= get_textbox_html('CSS class', 'lw-css-class', true);  
     $html .= get_textbox_html('Background image url', 'lw-background-image-url', true);
-    $html .= get_checkbox_html('Full width', 'lw-full-width', true);  
+    $html .= get_textbox_html('Background color', 'lw-background-color', true);
+    $html .= get_select_html('Full width', 'lw-full-width', get_width_arr(), true);  
     return get_popup_html('row', $html);
+}
+function get_post_type_arr(){
+    $post_types = array();
+    array_push($post_types, array(
+        'text' => 'Category',
+        'value' => 'category'
+    ));
+    array_push($post_types, array(
+        'text' => 'Tag',
+        'value' => 'tag'
+    ));
+    array_push($post_types, array(
+        'text' => 'Search',
+        'value' => 'search'
+    ));
+    array_push($post_types, array(
+        'text' => 'Related posts',
+        'value' => 'related_posts'
+    ));
+    return $post_types;
+}
+function get_width_arr(){    
+    $items = array();
+    array_push($items, array(
+        'text' => 'Padding',
+        'value' => 'padding'
+    ));
+    array_push($items, array(
+        'text' => 'Full',
+        'value' => 'full'
+    ));
+    array_push($items, array(
+        'text' => 'Full + Padding',
+        'value' => 'full+padding'
+    ));
+    return $items;
 }
 function get_thumbnail_size_arr(){
     $image_sizes = array();

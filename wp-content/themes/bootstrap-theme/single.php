@@ -49,7 +49,9 @@ if(is_object($lw_json_settings)){
 if($template_id > 0){?>
 
     <?php
-    $post = get_post($template_id);
+    global $single;
+    $single = $post;
+    $post = get_post($template_id); 
 
     $sidebar_position = get_post_meta( $post->ID, 'lw_page_sidebar_position', true);
     if(!$sidebar_position) {
@@ -72,21 +74,16 @@ if($template_id > 0){?>
         if($sidebar_position == 'left'){
             dynamic_sidebar('lw_sidebar');
         }else{        
-            the_content();
-
             $widget->widget_post($post->ID);
         }
         
         //
         echo $position_arr['middle'];
-
-        if($sidebar_position == 'left'){
-            the_content();
-
-            $widget = new lw_widget();
-            $widget->widget_post($post->ID);
-        }else{        
+        
+        if($sidebar_position == 'right'){
             dynamic_sidebar('lw_sidebar');
+        }else if($sidebar_position == 'left'){ 
+            $widget->widget_post($post->ID);
         }
         
         //

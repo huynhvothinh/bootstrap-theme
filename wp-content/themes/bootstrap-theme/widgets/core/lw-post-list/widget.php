@@ -134,7 +134,25 @@ class lw_post_list{
                 );
             }
         }else if($post_type == 'related_posts'){ 
+            $arr = [];
+            global $single;
+            $postcat = get_the_category( $single->ID );
+            if ( ! empty( $postcat ) ) {
+                array_push($arr, $postcat[0]->cat_ID);
+            }
 
+            $query = array( 
+                'post_type' => 'post',
+                'posts_per_page'   => $post_total
+            );
+            $query['tax_query'] = array(
+                array(
+                    'taxonomy' => 'category',
+                    'field' => 'term_id',
+                    'terms' => $arr,
+                    'include_children' => true
+                )
+            ); 
         }
         
         $posts = new WP_Query( $query);         
@@ -158,7 +176,7 @@ class lw_post_list{
 
         if ( $posts->have_posts() ){
         ?>
-            <div class="row">
+            <div class="row <?php echo $post_type;?>">
             <?php
                 global $post;
                 while ( $posts->have_posts() ) : $posts->the_post(); 

@@ -6,15 +6,28 @@ class lw_menu{
     public function form(){
         require_once(dirname(__FILE__).'/../../fields.php');
 
-        $items = array();
-        array_push($items, array());
-        array_push($items, array());
-        $items[0]['text'] = 'Header';
-        $items[0]['value'] = 'header';
-        $items[1]['text'] = 'Footer';
-        $items[1]['value'] = 'footer';
+        $locations = array();        
+        array_push($locations, array());
+        array_push($locations, array());
+        array_push($locations, array());
+        $locations[0]['text'] = 'Header';
+        $locations[0]['value'] = 'header';
+        $locations[1]['text'] = 'Nav';
+        $locations[1]['value'] = 'nav';
+        $locations[2]['text'] = 'Custom';
+        $locations[2]['value'] = 'custom';
 
-        $fields_html .= get_select_html('Menu location', 'lw-menu-location', $items);
+        $items = array();        
+        $menus = get_terms( 'nav_menu', array( 'hide_empty' => false ) ); 
+        for($i=0;$i<count($menus);$i++){
+            $item = array();
+            $item['text'] = $menus[$i]->name;
+            $item['value'] = $menus[$i]->term_id;
+            array_push($items, $item);
+        }
+
+        $fields_html .= get_select_html('Menu location', 'lw-menu-location', $locations);
+        $fields_html .= get_select_html('Menu item', 'lw-menu-item', $items);
         $fields_html .= '<hr>';
         $fields_html .= get_item_setting_html();
         $field_group_html = get_field_group_html('Menu', 'lw-menu', $fields_html);
@@ -25,10 +38,14 @@ class lw_menu{
         if(isset($arr['lw-menu-location'])){
             $menu_location = $arr['lw-menu-location'];
         }
+        if(isset($arr['lw-menu-item'])){
+            $menu_item = $arr['lw-menu-item'];
+        }
 
         if($menu_location == 'header'){
             wp_nav_menu( array(
                 'theme_location'  => $menu_location,
+                'menu_id' => $menu_item,
                 'depth' => 2, 
                 'container_class' => 'navbar navbar-expand-md navbar-light lw-menu-header',
                 'container' => 'nav',
@@ -54,12 +71,19 @@ class lw_menu{
                 });
             </script>
             <?php
-        }else{
+        }else if($menu_location == 'nav'){
             wp_nav_menu( array(
-                'theme_location'  => $menu_location,
+                'menu_id'  => $menu_item,
                 'depth' => 1, 
                 'container_class' => 'lw-menu-footer',
                 'items_wrap' => '<ul class="nav justify-content-center">%3$s</ul>'
+            ) );
+        }else{
+            wp_nav_menu( array(
+                'menu_id'  => $menu_item,
+                'depth' => 1, 
+                'container_class' => 'lw-menu-footer',
+                'items_wrap' => '<ul class="lw-menu-custom">%3$s</ul>'
             ) );
         }
     }

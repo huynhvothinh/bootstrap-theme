@@ -1,0 +1,28 @@
+.lw-post-question{
+    padding: 25px 0px;
+}
+.lw-question-title{
+    font-size: 35px;
+    text-transform: uppercase;
+    color: black;
+}
+.lw-question-content ul{
+    list-style: none;
+    padding-left: 0px;
+    font-size: initial;
+    text-transform: initial;
+    font-weight: initial;
+}
+.lw-question-content>ul>li{
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.lw-question-content ul li ul{
+    display: none;
+}
+.lw-question-content ul li ul li{
+    margin: 5px 0px;
+}

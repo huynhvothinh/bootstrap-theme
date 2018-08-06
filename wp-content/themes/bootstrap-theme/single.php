@@ -51,9 +51,8 @@ if($template_id > 0){?>
     <?php
     global $single;
     $single = $post;
-    $post = get_post($template_id); 
 
-    $sidebar_position = get_post_meta( $post->ID, 'lw_page_sidebar_position', true);
+    $sidebar_position = get_post_meta( $template_id, 'lw_page_sidebar_position', true);
     if(!$sidebar_position) {
         $sidebar_position = 'hide';
     }
@@ -62,11 +61,11 @@ if($template_id > 0){?>
     $widget = new lw_widget();
     ?>
 
-    <div class="container lw-widget-top">
-        <?php $widget->widget_post($post->ID, 'lw_widgets_json_top');?>
+    <div class="lw-widget-top">
+        <?php $widget->widget_post($template_id, 'lw_widgets_json_top');?>
     </div>
 
-    <div class="container lw-widget-content">
+    <div class="lw-widget-content <?php echo $sidebar_position ? 'container': ''; ?>">
     <?php
         // 
         echo $position_arr['first'];
@@ -74,7 +73,7 @@ if($template_id > 0){?>
         if($sidebar_position == 'left'){
             dynamic_sidebar('lw_sidebar');
         }else{        
-            $widget->widget_post($post->ID);
+            $widget->widget_post($template_id);
         }
         
         //
@@ -83,7 +82,7 @@ if($template_id > 0){?>
         if($sidebar_position == 'right'){
             dynamic_sidebar('lw_sidebar');
         }else if($sidebar_position == 'left'){ 
-            $widget->widget_post($post->ID);
+            $widget->widget_post($template_id);
         }
         
         //
@@ -91,8 +90,8 @@ if($template_id > 0){?>
     ?>
     </div>
 
-    <div class="container lw-widget-bottom">
-        <?php $widget->widget_post($post->ID, 'lw_widgets_json_bottom');?>
+    <div class="lw-widget-bottom">
+        <?php $widget->widget_post($template_id, 'lw_widgets_json_bottom');?>
     </div>
 
 <?php } // end if template_id ?>

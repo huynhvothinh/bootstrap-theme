@@ -2,7 +2,10 @@
 @import "lw-logo/lw-logo.css";
 @import "lw-menu/lw-menu.css";
 @import "lw-page-title/lw-page-title.css";
+@import "lw-post-content/lw-post-content.css";
 @import "lw-post-list/lw-post-list.css";
+@import "lw-post-question/lw-post-question.css";
+@import "lw-post-thumbnail/lw-post-thumbnail.css";
 @import "lw-search/lw-search.css";
 @import "lw-setting/lw-setting.css";
 @import "lw-short-news/lw-short-news.css";

@@ -42,7 +42,8 @@
 .lw-editor .gform_wrapper li.gfield_error textarea{
     border: 1px solid #2eab67;
 }
-.lw-editor .gform_wrapper .gfield_radio{
+.lw-editor .gform_wrapper .gfield_radio,
+.lw-editor .gform_wrapper .gfield_checkbox{
     padding-left: 25px;
 }
 .lw-editor .gforms_confirmation_message{
@@ -105,6 +106,7 @@
 .lw-contact.lw-editor .gform_title{
     text-transform: uppercase;
     font-size: 35px;
+    color: black;
 }
 .lw-contact.lw-editor .gform_description{
     text-transform: uppercase;

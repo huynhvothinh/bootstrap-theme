@@ -1,0 +1,7 @@
+.lw-post-list .lw-post-thumbnail img{
+    width: 100%;
+    height: auto;
+}
+.lw-post-list .search-box{
+    max-width: 400px;
+}

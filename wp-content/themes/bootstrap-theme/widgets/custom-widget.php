@@ -47,7 +47,7 @@ class lw_widget extends WP_Widget {
     // Creating widget front-end    
     public function widget_post($postID, $key='lw_widgets_json') {
         $meta = get_post_meta($postID, $key);
-
+        
         if($meta){             
             $lw_widgets_json = json_decode($meta[0]); 
 

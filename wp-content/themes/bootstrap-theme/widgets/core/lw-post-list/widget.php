@@ -237,6 +237,8 @@ function lw_get_paging($custom_query = null) {
 
         $html = str_replace('<span aria-current=\'page\' class=\'page-numbers current\'>',
             '<li class="page-item active"><a class="page-link" href="#">',$html);
+        $html = str_replace('<span class="page-numbers dots">',
+            '<li class="page-item"><a class="page-link" href="#">',$html);
         $html = str_replace('</span>','</a></li>',$html);
 
         echo $html;

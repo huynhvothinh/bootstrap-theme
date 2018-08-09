@@ -60,13 +60,15 @@ function get_item_setting_html(){
     $html = get_textbox_html('Item name', 'lw-name', true);
     $html .= get_checkbox_html('Display name', 'lw-display-name', true);
     $html .= get_textbox_html('CSS class', 'lw-css-class', true);
+    $html .= getCSSExample();
     $html .= get_textbox_html('Background image url', 'lw-background-image-url', true);
     return $html;
 }
 function get_column_setting_html(){
     $html = get_textbox_html('Column name', 'lw-name', true);
     $html .= get_checkbox_html('Display name', 'lw-display-name', true);
-    $html .= get_textbox_html('CSS class', 'lw-css-class', true);
+    $html .= get_textbox_html('CSS class', 'lw-css-class', true);  
+    $html .= getCSSExample();  
     $html .= get_textbox_html('Background image url', 'lw-background-image-url', true);
     return get_popup_html('column', $html);
 }
@@ -74,6 +76,7 @@ function get_row_setting_html(){
     $html = get_textbox_html('Row name', 'lw-name', true);
     $html .= get_checkbox_html('Display name', 'lw-display-name', true);
     $html .= get_textbox_html('CSS class', 'lw-css-class', true);  
+    $html .= getCSSExample();
     $html .= get_textbox_html('Background image url', 'lw-background-image-url', true);
     $html .= get_textbox_html('Background color', 'lw-background-color', true);
     $html .= get_select_html('Full width', 'lw-full-width', get_width_arr(), true);  
@@ -150,5 +153,16 @@ function get_thumbnail_size_arr(){
         'value' => 'lw_featured_image_400x300'
     ));
     return $image_sizes;
+}
+function getCSSExample(){
+    return '<div class="field box">
+    <div class="title field-title"></div>
+    <div class="body field-body">
+    <ul>
+        <li>Margin: mt/mb/ml/mr + [-] + 0/1/2/3/4/5//auto</li>
+        <li>Padding: pt/pb/pl/pr + [-] + 0/1/2/3/4/5//auto</li>
+    </ul>
+    </div>
+</div>';
 }
 ?>

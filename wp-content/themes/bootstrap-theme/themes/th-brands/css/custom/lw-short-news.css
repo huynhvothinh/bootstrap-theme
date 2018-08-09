@@ -10,6 +10,9 @@
     font-size: 20px;
     text-transform: uppercase;
 }
+.lw-short-news .lw-button a:hover{
+    background-color:#57bb85;
+}
 .lw-short-news .lw-button .wrapper{
     padding: 0px 10px;
     background-color: rgba(46,171,103, 0.8);

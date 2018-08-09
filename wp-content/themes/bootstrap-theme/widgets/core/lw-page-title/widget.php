@@ -17,7 +17,7 @@ class lw_page_title{
             <?php
                 global $single;
                 if(is_tag()){
-                    echo __('Tag: ', 'lw').single_tag_title('', false);
+                    echo single_tag_title('', false);
                 }else if(is_search()){
                     echo __('Search', 'lw');
                 }else if(is_page()){
@@ -25,7 +25,7 @@ class lw_page_title{
                 }else if(is_single()){
                     echo $single->post_title;
                 }else if ( is_archive() ) {
-                    echo __('Category: ', 'lw').get_the_archieve_title();
+                    echo single_cat_title();
                 }
             ?>
             </h2>

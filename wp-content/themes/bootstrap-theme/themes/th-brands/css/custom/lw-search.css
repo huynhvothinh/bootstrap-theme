@@ -5,6 +5,9 @@
     background-color: #2eab67;
     color: white;
 }
+.lw-search .btn:hover{
+    background-color: #57bb85;
+}
 /* lw-footer */
 .lw-footer .lw-search form{
     max-width: 400px;

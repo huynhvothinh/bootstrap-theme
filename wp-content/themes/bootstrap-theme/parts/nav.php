@@ -1,5 +1,9 @@
 <?php
-function lw_wp_nav_menu($menu) {    
+function lw_wp_nav_menu($menu) { 
+    if(strpos($menu, 'lw-menu-header') == false){
+        return $menu;
+    }   
+    
     $menu = preg_replace('/ class="menu-item /',' class="menu-item nav-item ',$menu); 
     $menu = preg_replace('/ href="/',' class="nav-link" href="',$menu); 
     

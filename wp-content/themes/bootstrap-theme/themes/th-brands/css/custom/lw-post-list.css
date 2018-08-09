@@ -57,3 +57,26 @@
 .search .lw-post-list{
     padding-top: 25px;
 }
+/* related post */
+.lw-post-list .related_posts{
+    background-color: #f2f2f2;
+    border-radius: 20px;
+    padding: 22px;
+}
+.lw-post-list .related_posts .lw-post-item{
+    padding: 0px;
+    padding-top: 10px;
+}
+.lw-post-list .related_posts .lw-post-item:not(:last-child){
+    border-bottom: 1px solid #2eab67;
+}
+.lw-post-list .related_posts .lw-post-item:not(:last-child):hover{
+    border-bottom: 2px solid #2eab67;
+}
+.lw-post-list .related_posts .lw-post-item .lw-post-thumbnail,
+.lw-post-list .related_posts .lw-post-item .lw-post-excerpt{
+    display: none;
+}
+.lw-post-list .related_posts .lw-post-item .lw-post-title a{
+    color: rgb(128, 128, 128);
+}

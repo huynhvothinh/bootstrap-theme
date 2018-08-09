@@ -1,7 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 @import 'lw-menu.css';
 @import 'lw-footer.css';
 @import 'lw-slider-feedback.css';
 @import 'lw-post-list.css';
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+a:hover {
+    color: #57bb85;
+    text-decoration: none;
+}
 
 .lw-border-top{
     border-top: 8px solid #2eab67;
@@ -15,9 +24,17 @@
     background-color: #f2f2f2;
     padding: 10px;
 }
+.lw-widget-title h1,
+.lw-widget-title h2,
+.lw-widget-title h3,
+.lw-widget-title h4,
+.lw-widget-title h5{
+    margin: 0px !important;
+    color: black;
+}
 .lw-widget-content{
     min-height: 400px;
-    padding: 20px 0px;
+    padding: 0px;
 }
 .container-fruit{
     max-width: 1366px;

@@ -42,8 +42,9 @@ function get_data_json(){
 }
 
 function load_data(){
-    var settingJson = JSON.parse(jQuery('#lw_settings').val());
-    if(settingJson){
+    var data = jQuery('#lw_settings').val();    
+    if(data){
+        var settingJson = JSON.parse(data);
         jQuery('.dropdown-template.template-search').val(settingJson['template-search']);
         jQuery('.dropdown-template.template-tag').val(settingJson['template-tag']);
         jQuery('.dropdown-template.template-category-default').val(settingJson['template-category-default']);

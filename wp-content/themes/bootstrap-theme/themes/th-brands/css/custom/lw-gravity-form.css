@@ -6,6 +6,9 @@
     color: white;
     cursor: pointer;
 }
+.lw-editor .gform_wrapper .gform_button:hover{
+    background: #57bb85;
+}
 .lw-editor .gform_wrapper .gform_footer{
     padding-right: 16px;
     text-align: center;

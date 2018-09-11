@@ -95,7 +95,11 @@ function post_options_code_widget_base( $post, $position = '', $add_editor=true)
     $lw_widgets_json_string = 'lw_widgets_json'.$position;
     $lw_widgets_json = get_post_meta( $post->ID, $lw_widgets_json_string, true);
     if(!$lw_widgets_json){
-        $lw_widgets_json = '{}';
+        if($position){
+            $lw_widgets_json = '{}';
+        }else{
+            $lw_widgets_json = '{"row_arr":[{"id":"1","type":"row","name":"","display_name":false,"css_class":"mt-3","full_width":"padding","background_image_url":"","background_color":"","column_arr":[{"id":"2","type":"column","name":"","display_name":false,"css_class":"","background_image_url":"","size":"12","item_arr":[{"id":"3","type":"item","name":"","display_name":false,"css_class":"","background_image_url":"","widget_name":"lw-page-title","field_arr":[]},{"id":"4","type":"item","name":"","display_name":false,"css_class":"","background_image_url":"","widget_name":"lw-post-content","field_arr":[{"field":"lw-content-format","value":"normal","type":"text"}]}]}]}]}';
+        }
     }
     $id = 'post_options_code_widget'.$position; 
 ?>

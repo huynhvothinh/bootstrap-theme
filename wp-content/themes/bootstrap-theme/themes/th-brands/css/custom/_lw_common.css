@@ -54,3 +54,12 @@ a:hover {
     display: flex;
     align-items: center;
 }
+
+@media (max-width: 768px){    
+    .lw-border-top{
+        border-top: 4px solid #2eab67;
+    }
+    .lw-border-bottom{
+        border-bottom: 4px solid #2eab67;
+    }
+}

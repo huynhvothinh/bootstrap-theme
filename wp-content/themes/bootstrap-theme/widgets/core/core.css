@@ -1,7 +1,9 @@
+@import "lw-category/lw-category.css";
 @import "lw-editor/lw-editor.css";
 @import "lw-logo/lw-logo.css";
 @import "lw-menu/lw-menu.css";
 @import "lw-page-title/lw-page-title.css";
+@import "lw-post-category/lw-post-category.css";
 @import "lw-post-content/lw-post-content.css";
 @import "lw-post-list/lw-post-list.css";
 @import "lw-post-question/lw-post-question.css";
@@ -12,4 +14,5 @@
 @import "lw-slider/lw-slider.css";
 @import "lw-slider-feedback/lw-slider-feedback.css";
 @import "lw-social/lw-social.css";
+@import "lw-tag/lw-tag.css";
 @import "lw-textbox/lw-textbox.css";

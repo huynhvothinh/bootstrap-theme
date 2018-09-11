@@ -1,0 +1,11 @@
+.lw-tag ul{
+    list-style-type: none;
+    padding: 0px;
+}
+.lw-tag ul li{
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border: 1px solid white;
+    padding: 5px;
+}

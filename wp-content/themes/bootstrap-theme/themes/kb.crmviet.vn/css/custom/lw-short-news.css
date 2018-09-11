@@ -1,0 +1,30 @@
+.lw-short-news{
+    text-align: center;
+    margin-top: 45px;
+    margin-bottom: 45px;
+} 
+.lw-short-news .lw-title{
+    font-size: 20px;
+    color: #fd9803;
+}
+/* banner */
+.banner{
+    padding: 100px 0px;
+    background-color: #fd9803;
+    background-size: 100%;
+}
+.banner .lw-short-news .lw-title{
+    font-size: 35px;
+    color: black;
+    font-weight: bold;
+}
+.banner .lw-short-news .lw-content{
+    font-size: 20px;
+    color: white;
+}
+
+/* footer */
+.lw-footer .lw-short-news{
+    margin: 0px;
+    text-align: left;
+}

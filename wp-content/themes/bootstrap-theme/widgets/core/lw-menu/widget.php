@@ -110,6 +110,14 @@ class lw_menu{
                 'items_wrap' => '<ul class="lw-menu-custom">%3$s</ul>',
                 'fallback_cb'    => false
             ) );
+            ?>
+            <script>
+                jQuery('.lw-menu-custom .menu-item-has-children > a').click(function(e){
+                    e.preventDefault();
+                    jQuery(this).parent().find('>.sub-menu').toggleClass('show');
+                })
+            </script>
+            <?php
         }
     }
 }

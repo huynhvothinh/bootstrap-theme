@@ -32,11 +32,24 @@
 .lw-menu .lw-menu-footer{
     margin-bottom: 15px;
 }
-.lw-menu .lw-menu-footer .nav-link{
+.lw-menu .lw-menu-footer a{
     color: white;
     text-transform: uppercase;
     padding: 4px 10px;
 }
-.lw-menu .lw-menu-footer .nav-item:nth-child(n+2){
+.lw-menu .lw-menu-footer .menu-item:nth-child(n+2){
     border-left: 1px solid;
+}
+
+@media (max-width: 768px){
+    .navbar-toggler{
+        border: 0px;
+    }
+    .navbar-toggler-icon{
+        width: 25px;
+        height: 25px;
+    }
+    #nav-menu-toggle{
+        margin-top: 25px;
+    }
 }

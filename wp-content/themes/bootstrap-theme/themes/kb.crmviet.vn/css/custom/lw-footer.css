@@ -1,0 +1,12 @@
+.lw-footer{    
+    background-color: rgb(25, 118, 210);
+    color: white;
+    padding-bottom: 75px;
+    padding-top: 35px; 
+}
+.lw-footer .lw-border-top{    
+    padding-top: 75px;
+}
+.lw-footer a{
+    color: white;
+}

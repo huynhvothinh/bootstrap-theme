@@ -1,13 +1,15 @@
-@media (max-width:769px){
+@media (max-width:768px){
     .lw-mobile-logo{
         position: absolute;
         left: 0px;
         right: 0px;
+        top: -26px;
     }
     .lw-mobile-logo .lw-logo{
-        text-align: left;
+        text-align: center;
+        padding: 10px 0px;
     }    
     .lw-mobile-logo .lw-logo img{
-        max-width: 120px;
+        max-width: 180px;
     }
 }

@@ -35,7 +35,7 @@ class lw_post_content{
                     <?php
                         if($single){
                             // echo '<h2 class="lw-page-title">'.$single->post_title.'</h2>';
-                            echo $single->post_content;
+                            echo apply_filters('the_content', $single->post_content);
                         }
                     ?> 
                     </div>
@@ -81,7 +81,7 @@ class lw_post_content{
         <div class="lw-post-content">  
             <?php
                 if($single){
-                    echo $single->post_content;
+                    echo apply_filters('the_content', $single->post_content);
                 } // end if
             ?> 
         </div>

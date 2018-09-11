@@ -41,6 +41,7 @@ class lw_post_list{
         $fields_html = '';
         $fields_html .= get_select_html('Post type', 'lw-post-type', $post_type);
         $fields_html .= get_select_html('Category/Tag', 'lw-post-category', $items);
+        $fields_html .= get_checkbox_html('Show Paging', 'lw-show-paging');
         $fields_html .= get_textbox_html('Post per page (not for search)', 'lw-post-total');
         $fields_html .= get_select_html('Image size', 'lw-image-size', $image_sizes);
         $fields_html .= get_textbox_html('Post CSS class', 'lw-post-css-class');
@@ -55,6 +56,7 @@ class lw_post_list{
         $post_css_class = '';
         $image_size = 'full';
         $post_type = '';
+        $show_paging = false;
         if(is_array($arr)){ 
             if(isset($arr['lw-post-category'])){
                 $post_tag_category = $arr['lw-post-category'];   
@@ -75,25 +77,22 @@ class lw_post_list{
             if(isset($arr['lw-post-type'])){
                 $post_type = $arr['lw-post-type']; 
             }
+            if(isset($arr['lw-show-paging'])){
+                $show_paging = $arr['lw-show-paging']; 
+            }
         }
 
         if($post_total > 24){
             $post_total = 24;
         }
         
-        // show slider 
+        // get default value
         $query = array();
         if($post_type == 'search'){
             global $query_string;
             wp_parse_str( $query_string, $query ); 
 
-            // get default value
-            $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-            $post_total = get_option('posts_per_page');;
-
             $query['post_type'] = 'post';
-            $query['posts_per_page'] = $post_total; 
-            $query['paged'] = $paged; 
             if($post_tag_category){
                 $query['tax_query'] = array(
                     array(
@@ -154,6 +153,11 @@ class lw_post_list{
                 )
             ); 
         }
+        //
+        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+        // $post_total = get_option('posts_per_page');
+        $query['posts_per_page'] = $post_total; 
+        $query['paged'] = $paged; 
         
         $posts = new WP_Query( $query);         
         
@@ -199,9 +203,9 @@ class lw_post_list{
             </div>
             <?php
         
-            if($post_type == 'search'){  
+            if($show_paging){  
             ?>
-                <div class="paging"> 
+                <div class="paging mt-3"> 
                     <?php lw_get_paging($posts);?>
                 </div>
             <?php

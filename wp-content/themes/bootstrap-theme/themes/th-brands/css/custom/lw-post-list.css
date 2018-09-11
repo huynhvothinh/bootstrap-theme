@@ -80,3 +80,13 @@
 .lw-post-list .related_posts .lw-post-item .lw-post-title a{
     color: rgb(128, 128, 128);
 }
+
+
+@media (max-width: 924px){
+    .lw-project.lw-post-list .lw-post-title{
+        display: block;
+    }
+    .lw-project.lw-post-list .lw-post-title a{
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,17 @@
+.dark{
+    background-color: #1e2227;
+}
+.gray{
+    background-color: #e9edeb;
+}
+.btn{
+    background-color: #e91c23!important;
+    color: white;
+}
+.display-flex{
+    display: flex;
+    align-items: center;
+}
+a{
+    color: #e91c23;
+}

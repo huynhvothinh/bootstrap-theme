@@ -150,7 +150,8 @@ class lw_widget extends WP_Widget {
     public function update( $new_instance, $old_instance ) {
         $instance = array();
         $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-        $instance['lw_widgets_json'] = ( ! empty( $new_instance['lw_widgets_json'] ) ) ? strip_tags( $new_instance['lw_widgets_json'] ) : '';
+        // $instance['lw_widgets_json'] = ( ! empty( $new_instance['lw_widgets_json'] ) ) ? strip_tags( $new_instance['lw_widgets_json'] ) : '';
+        $instance['lw_widgets_json'] = $new_instance['lw_widgets_json'];
         return $instance;
     }
 

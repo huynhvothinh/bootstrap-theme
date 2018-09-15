@@ -57,7 +57,7 @@ function widget_init(id){
     // get value of json
     jQuery('.close[data-lw-id="'+id+'"]').click(function(){ 
         var id = jQuery(this).attr('data-lw-id');
-        jQuery('.lw_widgets_json[data-lw-id="'+id+'"] textarea').val(JSON.stringify(getJson(id)));  
+        jQuery('.lw_widgets_json[data-lw-id="'+id+'"] textarea').val(JSON.stringify(getJson(id)));
         jQuery(this).closest('.widget').find('.lw-widget-title').change();
     });
 

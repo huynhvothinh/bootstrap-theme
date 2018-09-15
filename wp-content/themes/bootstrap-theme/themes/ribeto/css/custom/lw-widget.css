@@ -1,0 +1,32 @@
+.row-title{
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0 0 30px 0;
+    font-weight: 500;
+    font-size: 26px;
+    color: #333333;
+    position: relative;
+    line-height: 65px;
+}
+
+.row-title::before{
+    position: absolute;
+    border-color: #e91c23 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+    content: " ";
+    width: auto;
+    height: auto;
+    bottom: -15px; 
+    left: 30px;
+    border-width: 8px;
+    border-style: solid;
+    z-index: 9999;
+}
+.row-title:after{
+    position: absolute;
+    content: " ";
+    background-color: #e91c23;
+    height: 8px;
+    width: 100px;
+    left: 0px;
+    bottom: 0px;
+}

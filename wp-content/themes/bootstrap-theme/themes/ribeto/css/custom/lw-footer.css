@@ -1,0 +1,11 @@
+.lw-footer{
+    background-color: #262626;
+    padding-top: 25px;
+}
+.lw-footer .column-title,
+.lw-footer strong{
+    color: white;
+}
+.lw-footer p{
+    margin-bottom: 5px;
+}

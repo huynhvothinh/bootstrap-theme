@@ -1,0 +1,13 @@
+/* SIDEBAR */
+.sidebar .lw-post-thumbnail,
+.sidebar .lw-post-excerpt{
+    display: none;
+}
+.sidebar .lw-post-date{
+    display: block;
+}
+.sidebar .lw-post-item{
+    border-bottom: 1px dashed #e5e5e5;
+    font-size: 80%;
+    padding: 12px 0px 15px 0px;
+}

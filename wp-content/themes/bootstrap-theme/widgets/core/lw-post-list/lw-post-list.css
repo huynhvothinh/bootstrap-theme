@@ -5,6 +5,9 @@
 .lw-post-list .search-box{
     max-width: 400px;
 }
+.lw-post-list .lw-post-date{
+    display: none;
+}
 .paging .page-link{
     background-color: #57bb85;
     color: white;

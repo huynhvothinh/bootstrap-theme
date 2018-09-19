@@ -33,7 +33,7 @@ class lw_category{
             $category_of = $arr['lw-category-of'];
         }
         ?>
-        <div class="lw-category"> 
+        <ul class="lw-category-list"> 
             <?php  
             wp_list_categories(array(
                 'child_of' => $category_of,
@@ -42,7 +42,7 @@ class lw_category{
                 'order' => 'ASC'
             ));
             ?> 
-        </div>
+        </ul>
         <?php
     }
 }

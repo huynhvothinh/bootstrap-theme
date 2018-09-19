@@ -1,0 +1,15 @@
+.lw-tag .lw-tag-list{
+    list-style: none;
+    padding-left: 0px;
+    margin-left: -15px;
+}
+.lw-tag .lw-tag-list .tag-item{    
+    border: 1px solid #dedede;
+}
+.lw-tag .lw-tag-list .tag-item a{
+    color: inherit;
+}
+.lw-tag .lw-tag-list .tag-item:hover{ 
+    color: white;
+    background-color: #e91c23;
+}

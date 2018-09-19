@@ -190,12 +190,18 @@ class lw_post_list{
                             <?php echo get_the_post_thumbnail( $post->ID, $image_size);?>
                             <div class="lw-image-layer"></div>
                         </div>
+                        <div class="lw-post-date">
+                            <i class="fa fa-calendar"></i>
+                            <?php 
+                                echo get_the_date('d-m-Y', $post->ID); 
+                            ?>
+                        </div>
                         <div class="lw-post-title">
                             <h5 class="lw-title">
                                 <a href="<?php echo get_post_permalink();?>"><?php the_title();?></a>
                             </h5>
                         </div>
-                        <div class="lw-post-excerpt"><?php the_excerpt($post->ID);?></div>
+                        <div class="lw-post-excerpt"><?php the_excerpt($post->ID);?></div>                        
                     </div>
                 <?php
                 endwhile; // end while

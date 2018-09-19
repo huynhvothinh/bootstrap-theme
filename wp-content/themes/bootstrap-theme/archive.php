@@ -74,7 +74,7 @@ if($template_id > 0){?>
         <?php $widget->widget_post($post->ID, 'lw_widgets_json_top');?>
     </div>
 
-    <div class="lw-widget-content">
+    <div class="lw-widget-content <?php echo ($sidebar_position != 'hide' ? 'container' : '')?>">
     <?php
         // 
         echo $position_arr['first'];

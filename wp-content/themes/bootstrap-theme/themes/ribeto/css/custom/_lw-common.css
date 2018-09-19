@@ -13,5 +13,9 @@
     align-items: center;
 }
 a{
+    /* color: #e91c23; */
+    color: inherit;
+}
+a:hover{
     color: #e91c23;
 }

@@ -1,0 +1,26 @@
+.lw-breakcrumb{
+    margin-top: 10px;
+    font-size: 115%;
+}
+.lw-breakcrumb ul{
+    list-style: none;
+}
+.lw-breakcrumb ul li{
+    display: inline-block;
+    margin-right: 5px;    
+    font-weight: bold;
+    font-size: 15px;
+}
+.lw-breakcrumb ul li:nth-child(n+1)::after{
+    content: "»";
+    margin-left: 5px;
+}
+.lw-breakcrumb ul li:last-child::after{
+    content: "";
+}
+.lw-breakcrumb ul li a{
+    color: #e91c23;
+}
+.lw-breakcrumb ul li a:hover{
+    color: inherit;
+}

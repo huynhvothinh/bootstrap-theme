@@ -15,10 +15,10 @@ class lw_tag{
         <div class="lw-tag"> 
             <?php
                 $tags = get_tags();
-                $html = '<ul>';
+                $html = '<ul class="lw-tag-list">';
                 foreach ( $tags as $tag ) {
                     $tag_link = get_tag_link( $tag->term_id );
-                    $html .= "<li><a href='{$tag_link}' class='{$tag->slug}'>";
+                    $html .= "<li class=\"tag-item\"><a href='{$tag_link}' class='{$tag->slug}'>";
                     $html .= "{$tag->name}</a></li>";
                 }
                 $html .= '</ul>';

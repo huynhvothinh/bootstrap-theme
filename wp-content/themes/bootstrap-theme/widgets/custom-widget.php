@@ -202,7 +202,7 @@ class lw_widget extends WP_Widget {
         ?>
         <div class="col-md-<?php echo $column->size;?> <?php echo $column->css_class;?>">
             <?php if($column->display_name){ ?>
-            <h3 class="column-title"><?php echo $column->name;?></h3>
+                <div class="row"><h3 class="column-title"><?php echo $column->name;?></h3></div>
             <?php } // end if?>
 
             <?php             
@@ -217,7 +217,7 @@ class lw_widget extends WP_Widget {
         ?>
         <div class="item <?php echo $item->css_class;?> <?php echo $item->widget_name;?>">
             <?php if($item->display_name){ ?>
-            <h4 class="item-title"><?php echo $item->name;?></h4>
+                <div class="row"><h4 class="item-title"><?php echo $item->name;?></h4></div>
             <?php } // end if?>
 
             <?php      

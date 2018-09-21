@@ -12,7 +12,9 @@ function get_data_json(){
             'template-tag': '',
             'template-single-default': '',
             'template-page-default': '',
+            'template-product-default': '',
             'template-category-default': '',
+            'template-product-category-default': '',
             'template-category-arr': [],
             'template-category-single-arr': []
         }
@@ -20,8 +22,10 @@ function get_data_json(){
         settingJson['template-search'] = jQuery('.dropdown-template.template-search').val();
         settingJson['template-tag'] = jQuery('.dropdown-template.template-tag').val();
         settingJson['template-category-default'] = jQuery('.dropdown-template.template-category-default').val();
+        settingJson['template-product-category-default'] = jQuery('.dropdown-template.template-product-category-default').val();
         settingJson['template-single-default'] = jQuery('.dropdown-template.template-single-default').val();
         settingJson['template-page-default'] = jQuery('.dropdown-template.template-page-default').val();
+        settingJson['template-product-default'] = jQuery('.dropdown-template.template-product-default').val();
 
         jQuery('tr.template-category').each(function(){
             settingJson['template-category-arr'].push({
@@ -42,14 +46,16 @@ function get_data_json(){
 }
 
 function load_data(){
-    var data = jQuery('#lw_settings').val();    
+    var data = jQuery('#lw_settings').val();   
     if(data){
         var settingJson = JSON.parse(data);
         jQuery('.dropdown-template.template-search').val(settingJson['template-search']);
         jQuery('.dropdown-template.template-tag').val(settingJson['template-tag']);
         jQuery('.dropdown-template.template-category-default').val(settingJson['template-category-default']);
+        jQuery('.dropdown-template.template-product-category-default').val(settingJson['template-product-category-default']);
         jQuery('.dropdown-template.template-single-default').val(settingJson['template-single-default']);
         jQuery('.dropdown-template.template-page-default').val(settingJson['template-page-default']);
+        jQuery('.dropdown-template.template-product-default').val(settingJson['template-product-default']);
 
         var arr = [];
         arr = settingJson['template-category-arr'];

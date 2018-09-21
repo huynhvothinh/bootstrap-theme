@@ -87,6 +87,14 @@ function display_lw_settings(){
                     <td>Category page default</td>
                     <td><?php dropdown_template($template_arr, 'template-category-default', '');?></td>
                 </tr>
+                <tr class="template-product-category-default page-template">
+                    <td>Product Category default</td>
+                    <td><?php dropdown_template($template_arr, 'template-product-category-default', '');?></td>
+                </tr>
+                <tr class="template-product-default page-template">
+                    <td>Product default</td>
+                    <td><?php dropdown_template($template_arr, 'template-product-default', '');?></td>
+                </tr>
 
                 <tr>
                     <td><h3><a href="#" class="lw-setting-categories">Categories >> </a></h3></td> 

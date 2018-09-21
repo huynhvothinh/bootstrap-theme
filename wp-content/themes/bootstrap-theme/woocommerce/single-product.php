@@ -1,21 +1,11 @@
 <?php 
 get_header();
 
-// find category and parents, to map template
-// priority:
-// - current cat template
-// - parent template
-// - default template
-$category = get_queried_object(); 
-$cat_id_arr = array();
-array_push($cat_id_arr, $category->term_id);
-for($i=0; $i<5; $i++){
-    if($category->parent){
-        $category = get_category($category->parent);
-        array_push($cat_id_arr, $category->term_id);
-    }else{
-        break;
-    }
+// find post categories
+$cat_arr = get_the_category($post->ID); 
+$cat_id_arr = array(); 
+foreach($cat_arr as $cat){
+    array_push($cat_id_arr, $cat->term_id);
 }
 
 // template setting value
@@ -26,16 +16,16 @@ if(is_object($lw_json_settings)){
     $arr = (array)$lw_json_settings;
 
     // set default, before find template
-    if(isset($arr['template-product-category-default'])){
-        if($arr['template-product-category-default']){
-            $template_id = $arr['template-product-category-default'];
+    if(isset($arr['template-product-default'])){
+        if($arr['template-product-default']){
+            $template_id = $arr['template-product-default'];
         }
     }
 
-    // find template
-    // if(isset($arr['template-category-arr'])){
-    //     if($arr['template-category-arr']){
-    //         $template_arr = $arr['template-category-arr'];
+    // // find template
+    // if(isset($arr['template-category-single-arr'])){
+    //     if($arr['template-category-single-arr']){
+    //         $template_arr = $arr['template-category-single-arr'];
     //         $found = false;
     //         foreach($cat_id_arr as $cat_id){ 
     //             foreach($template_arr as $temp){
@@ -59,9 +49,10 @@ if(is_object($lw_json_settings)){
 if($template_id > 0){?>
 
     <?php
-    $post = get_post($template_id);
+    global $single;
+    $single = $post;
 
-    $sidebar_position = get_post_meta( $post->ID, 'lw_page_sidebar_position', true);
+    $sidebar_position = get_post_meta( $template_id, 'lw_page_sidebar_position', true);
     if(!$sidebar_position) {
         $sidebar_position = 'hide';
     }
@@ -71,18 +62,19 @@ if($template_id > 0){?>
     ?>
 
     <div class="lw-widget-top">
-        <?php $widget->widget_post($post->ID, 'lw_widgets_json_top');?>
+        <?php $widget->widget_post($template_id, 'lw_widgets_json_top');?>
     </div>
 
-    <div class="lw-widget-content <?php echo ($sidebar_position != 'hide' ? 'container' : '')?>">
+    <div class="lw-widget-content <?php echo $sidebar_position != 'hide' ? 'container': ''; ?>">
     <?php
         // 
         echo $position_arr['first'];
 
         if($sidebar_position == 'left'){
             dynamic_sidebar('lw_sidebar');
-        }else{       
-            $widget->widget_post($post->ID);
+        }else{        
+            include_once(dirname(__FILE__).'/single-product-woo.php') ;  
+            $widget->widget_post($template_id);
         }
         
         //
@@ -90,8 +82,9 @@ if($template_id > 0){?>
         
         if($sidebar_position == 'right'){
             dynamic_sidebar('lw_sidebar');
-        }else if($sidebar_position == 'left'){      
-            $widget->widget_post($post->ID);
+        }else if($sidebar_position == 'left'){ 
+            include_once(dirname(__FILE__).'/single-product-woo.php') ;  
+            $widget->widget_post($template_id);
         }
         
         //
@@ -100,7 +93,7 @@ if($template_id > 0){?>
     </div>
 
     <div class="lw-widget-bottom">
-        <?php $widget->widget_post($post->ID, 'lw_widgets_json_bottom');?>
+        <?php $widget->widget_post($template_id, 'lw_widgets_json_bottom');?>
     </div>
 
 <?php } // end if template_id ?>

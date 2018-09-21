@@ -1,4 +1,4 @@
-<?php
+<?php 
 /**
  * The template for displaying product content in the single-product.php template
  *
@@ -24,7 +24,7 @@ defined( 'ABSPATH' ) || exit;
  */
 ?>
 <div class="row">
-	<div class="col-md-9 col-sm-12 col-12">
+	<div class="col-md-12 col-sm-12 col-12">
 	<?php
 		do_action( 'woocommerce_before_single_product' );
 
@@ -76,8 +76,5 @@ defined( 'ABSPATH' ) || exit;
 		</div>
 
 		<?php do_action( 'woocommerce_after_single_product' ); ?>
-	</div>
-	<div class="col-md-3 col-sm-12 col-12">
-		<?php dynamic_sidebar('product-sidebar');?>
-	</div>
+	</div> 
 </div>

@@ -30,10 +30,10 @@ function get_textarea_html($title, $key, $is_setting=false){
     $result = get_field_box_html($title, $html);
     return $result;
 }
-function get_textbox_html($title, $key, $is_setting=false){ 
+function get_textbox_html($title, $key, $is_setting=false, $default_value=''){ 
     $plus_key = 'field-value';
     if($is_setting) $plus_key = 'setting';
-    $html = '<input type="text" field-key="'.$key.'" class="'.$key.' '.$plus_key.' textbox ">';
+    $html = '<input type="text" field-key="'.$key.'" class="'.$key.' '.$plus_key.' textbox " value="'.$default_value.'">';
     $result = get_field_box_html($title, $html);
     return $result;
 }

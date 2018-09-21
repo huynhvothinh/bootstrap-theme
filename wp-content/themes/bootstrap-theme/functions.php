@@ -16,6 +16,7 @@ require_once 'parts/logo.php';
 require_once 'parts/slider.php';
 require_once 'parts/template.php';
 require_once 'parts/theme-setting.php';
+require_once 'parts/woocommerce.php';
 
 // admin header
 add_action('admin_head', 'my_custom_fonts');

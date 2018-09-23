@@ -43,7 +43,7 @@
 }
 .lw-editor .gform_wrapper li.gfield_error input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=button]):not([type=image]):not([type=file]), 
 .lw-editor .gform_wrapper li.gfield_error textarea{
-    border: 3px solid #2eab67;
+    border: 3px solid #e91c23;
 }
 .lw-editor .gform_wrapper .gfield_radio,
 .lw-editor .gform_wrapper .gfield_checkbox{
@@ -51,7 +51,7 @@
 }
 .lw-editor .gforms_confirmation_message{
     color: #545454;
-    background-color: #2eab67;
+    background-color: #e91c23;
     min-height: 100px;
     display: flex;
     align-items: center;
@@ -62,7 +62,7 @@
 }
 /* lw-home */
 .lw-home.lw-editor{
-    margin: 55px 0px;
+    margin: 25px 0px;
 }
 .lw-home.lw-editor .gform_wrapper form{
     max-width: 550px;

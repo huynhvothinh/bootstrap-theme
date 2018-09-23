@@ -11,12 +11,12 @@
     max-width: 220px;
 }
 .lw-slider-feedback .feedback-title{
-    font-size: 30px;
+    font-size: 25px;
     text-transform: uppercase;
     color: gray;
 }
 .lw-slider-feedback .feedback-content{
-    font-size: 25px;
+    font-size: 21px;
     font-style: italic;
 }
 .lw-slider-feedback .feedback-content{
@@ -27,7 +27,7 @@
     text-align: right;
 }
 .lw-slider-feedback .feedback-info-1{
-    font-size: 22px;
+    font-size: 20px;
     text-transform: uppercase;
 }
 .lw-slider-feedback .feedback-info-2{ 

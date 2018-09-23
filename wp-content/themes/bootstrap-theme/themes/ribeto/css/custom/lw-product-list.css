@@ -1,0 +1,12 @@
+.lw-product-list .onsale{ 
+    background-color: #e91c23;
+}
+.lw-product-list .single_add_to_cart_button {
+    border: 1px transparent;
+}
+.lw-product-list .single_add_to_cart_button:hover {
+    border: 1px solid #e91c23;
+}
+.lw-product-list .lw-product-price{ 
+    color: #e91c23; 
+}

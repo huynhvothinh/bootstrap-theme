@@ -1,0 +1,4 @@
+.lw-product-category .onsale,
+.woocommerce .lw-product-category  ul.products li.product .onsale{ 
+    background-color: #e91c23; 
+}

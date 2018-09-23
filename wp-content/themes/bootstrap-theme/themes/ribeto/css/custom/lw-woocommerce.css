@@ -1,0 +1,40 @@
+.btn-outline-primary.disabled, .btn-outline-primary:disabled {
+    color: white;
+}
+.btn-outline-primary.disabled, .btn-outline-primary:hover {
+    color: #e91c23;
+}
+body.woocommerce .woocommerce-breadcrumb a{
+    color: #e91c23;
+}
+body.woocommerce .woocommerce-breadcrumb{
+    font-size: 15px;
+    font-weight: bold; 
+    padding: 15px 0px;
+    margin: 0px;
+}
+body.woocommerce span.onsale{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: #e91c23;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-weight: bold;
+    color: white;
+    padding: 0px;
+}
+body.woocommerce .single_add_to_cart_button {
+    display: initial;
+}
+body.woocommerce ul.products li.product .price,
+body.woocommerce div.product p.price, body.woocommerce div.product span.price{
+    color: #e91c23;
+}
+body.woocommerce ul.products li.product .price del,
+body.woocommerce div.product p.price del, div.woocommerce div.product span.price del{
+    color: gray;
+}

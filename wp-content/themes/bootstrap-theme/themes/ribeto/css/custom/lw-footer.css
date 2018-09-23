@@ -1,6 +1,11 @@
 .lw-footer{
     background-color: #262626;
-    padding-top: 25px;
+}
+.lw-footer .has-bg{
+    background-color: #262626;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
 }
 .lw-footer .column-title,
 .lw-footer strong{

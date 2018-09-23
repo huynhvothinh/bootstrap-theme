@@ -7,6 +7,12 @@
 .btn{
     background-color: #e91c23!important;
     color: white;
+    border: 1px transparent;
+}
+.btn:hover{
+    background-color: white!important;
+    color: #e91c23;
+    border: 1px solid #e91c23;
 }
 .display-flex{
     display: flex;

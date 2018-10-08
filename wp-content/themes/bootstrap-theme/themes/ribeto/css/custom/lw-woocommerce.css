@@ -26,6 +26,7 @@ body.woocommerce span.onsale{
     font-weight: bold;
     color: white;
     padding: 0px;
+    overflow: hidden;
 }
 body.woocommerce .single_add_to_cart_button {
     display: initial;
@@ -37,4 +38,7 @@ body.woocommerce div.product p.price, body.woocommerce div.product span.price{
 body.woocommerce ul.products li.product .price del,
 body.woocommerce div.product p.price del, div.woocommerce div.product span.price del{
     color: gray;
+}
+body.woocommerce div.product .product_title{
+    font-size: 30px;
 }

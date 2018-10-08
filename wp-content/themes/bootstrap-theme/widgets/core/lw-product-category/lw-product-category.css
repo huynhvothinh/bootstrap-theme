@@ -1,0 +1,23 @@
+.lw-product-category .site-main{
+    width: 100%;
+}
+.lw-product-category .onsale,
+.woocommerce .lw-product-category  ul.products li.product .onsale{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: red;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-weight: bold;
+    color: white;
+    padding: 0px;
+}
+.woocommerce .lw-product-category ul.products li.product .price{
+    padding-bottom: 12px;
+    color: red;
+    font-weight: bold;
+}

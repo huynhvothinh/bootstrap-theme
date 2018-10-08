@@ -172,16 +172,22 @@ class lw_widget extends WP_Widget {
             } 
         } 
         $styles = array();
+        $hasBg = '';
         if(property_exists($row, 'background_color') && $row->background_color){
             $styles['background_color_style'] =  'background-color:'.$row->background_color ;
         }
         if(property_exists($row, 'background_image_url') && $row->background_image_url) {
+            $hasBg = 'has-bg';
             $styles['background_image_style'] =  'background-image:url(\''.$row->background_image_url.'\');background-position: center;';
+        }
+        if(property_exists($row, 'style_css') && $row->style_css){
+            $hasBg = 'has-bg';
+            $styles['custom_css'] =  $row->style_css ;
         }
         $styles_string = 'style="'.implode(';', $styles).'"';        
 
         ?>
-        <div class="<?php echo $full_width_class[0] ;?> <?php echo $row->css_class;?>" <?php echo $styles_string;?>>
+        <div class="<?php echo $full_width_class[0] ;?> <?php echo $row->css_class;?> <?php echo $hasBg;?>" <?php echo $styles_string;?>>
             <?php echo $full_width_class[1] ? '<div class="'.$full_width_class[1].'">' : '';?>
                 <div class="row">
                     <?php if($row->display_name){ ?>
@@ -199,8 +205,22 @@ class lw_widget extends WP_Widget {
         <?php
     }
     function get_column($column){ 
+        $styles = array();
+        $hasBg = '';
+        if(property_exists($column, 'background_color') && $column->background_color){
+            $styles['background_color_style'] =  'background-color:'.$column->background_color ;
+        }
+        if(property_exists($column, 'background_image_url') && $row->background_image_url) {
+            $hasBg = 'has-bg';
+            $styles['background_image_style'] =  'background-image:url(\''.$column->background_image_url.'\');background-position: center;';
+        }
+        if(property_exists($column, 'style_css') && $column->style_css){
+            $hasBg = 'has-bg';
+            $styles['custom_css'] =  $column->style_css ;
+        }
+        $styles_string = 'style="'.implode(';', $styles).'"';   
         ?>
-        <div class="col-md-<?php echo $column->size;?> <?php echo $column->css_class;?>">
+        <div class="col-md-<?php echo $column->size;?> <?php echo $column->css_class;?> <?php echo $hasBg;?>" <?php echo $styles_string;?>>
             <?php if($column->display_name){ ?>
                 <div class="row"><h3 class="column-title"><?php echo $column->name;?></h3></div>
             <?php } // end if?>
@@ -213,9 +233,23 @@ class lw_widget extends WP_Widget {
         </div>
         <?php
     }
-    function get_item($item){        
+    function get_item($item){     
+        $styles = array();
+        $hasBg = '';
+        if(property_exists($item, 'background_color') && $item->background_color){
+            $styles['background_color_style'] =  'background-color:'.$item->background_color ;
+        }
+        if(property_exists($item, 'background_image_url') && $row->background_image_url) {
+            $hasBg = 'has-bg';
+            $styles['background_image_style'] =  'background-image:url(\''.$item->background_image_url.'\');background-position: center;';
+        }
+        if(property_exists($item, 'style_css') && $item->style_css){
+            $hasBg = 'has-bg';
+            $styles['custom_css'] =  $item->style_css ;
+        }
+        $styles_string = 'style="'.implode(';', $styles).'"';     
         ?>
-        <div class="item <?php echo $item->css_class;?> <?php echo $item->widget_name;?>">
+        <div class="item <?php echo $item->css_class;?> <?php echo $item->widget_name;?> <?php echo $hasBg;?>"  <?php echo $styles_string;?>>
             <?php if($item->display_name){ ?>
                 <div class="row"><h4 class="item-title"><?php echo $item->name;?></h4></div>
             <?php } // end if?>

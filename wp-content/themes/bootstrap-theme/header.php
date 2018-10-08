@@ -22,11 +22,12 @@ $theme_name = 'ribeto';
     <script src="/wp-content/themes/bootstrap-theme/assets/js/jquery-3.3.1.min.js"></script>
     <script src="/wp-content/themes/bootstrap-theme/assets/js/popper.min.js"></script>
     <script src="/wp-content/themes/bootstrap-theme/assets/js/bootstrap/bootstrap.min.js"></script>
+    <script src="/wp-content/themes/bootstrap-theme/themes/<?php echo $theme_name;?>/js/custom.js"></script>
     
     <title><?php bloginfo('name'); ?> | <?php is_front_page() ? bloginfo('description') : wp_title('', true, ''); ?></title>
     <?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?>>
-    <div class="lw-header">
+<body id="body" <?php body_class(); ?>>
+    <div id="header" class="lw-header">
         <?php dynamic_sidebar('lw_header_sidebar'); ?> 
     </div>

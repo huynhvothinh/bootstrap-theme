@@ -300,13 +300,14 @@ function getJson(main_id){
     };
     jQuery('.lw-widget-container[data-lw-id="'+main_id+'"]').each(function(){
         jQuery(this).find('.row.box').each(function(){
-            var id, name, display_name, css_class, background_image_url, full_width;
+            var id, name, display_name, css_class, background_image_url, style_css, full_width;
             id = jQuery(this).attr('data-index');
             name = jQuery(this).find('.lw-row-setting .setting.lw-name').val();
             display_name = jQuery(this).find('.lw-row-setting .setting.lw-display-name').is(":checked");
             css_class = jQuery(this).find('.lw-row-setting .setting.lw-css-class').val();
             background_image_url = jQuery(this).find('.field.box .setting.lw-background-image-url').val();
             background_color = jQuery(this).find('.field.box .setting.lw-background-color').val();
+            style_css = jQuery(this).find('.field.box .setting.lw-style-css').val();
             full_width = jQuery(this).find('.field.box .setting.lw-full-width').val();
 
             var row = {
@@ -318,17 +319,19 @@ function getJson(main_id){
                 'full_width': full_width,                
                 'background_image_url': background_image_url,
                 'background_color': background_color,
+                'style_css': style_css,
                 'column_arr': []
             }
             arr.row_arr.push(row);
 
             jQuery(this).find('.column.box').each(function(){
-                var id, name, display_name, css_class, size, background_image_url;
+                var id, name, display_name, css_class, size, background_image_url, style_css;
                 id = jQuery(this).attr('data-index');
                 name = jQuery(this).find('.lw-column-setting .setting.lw-name').val();
                 display_name = jQuery(this).find('.lw-column-setting .setting.lw-display-name').is(":checked");
                 css_class = jQuery(this).find('.lw-column-setting .setting.lw-css-class').val();
                 background_image_url = jQuery(this).find('.field.box .setting.lw-background-image-url').val();
+                style_css = jQuery(this).find('.field.box .setting.lw-style-css').val();
                 size = jQuery(this).find('.column-size').val();
 
                 var column = {
@@ -338,18 +341,20 @@ function getJson(main_id){
                     'display_name': display_name,
                     'css_class': css_class,
                     'background_image_url': background_image_url,
+                    'style_css': style_css,
                     'size': size,
                     'item_arr': []
                 }
                 row.column_arr.push(column);
 
                 jQuery(this).find('.item.box').each(function(){
-                    var id, name, display_name, css_class, widget_name, background_image_url;
+                    var id, name, display_name, css_class, widget_name, background_image_url, style_css;
                     id = jQuery(this).attr('data-index');
                     name = jQuery(this).find('.field.box .setting.lw-name').val();
                     display_name = jQuery(this).find('.field.box .setting.lw-display-name').is(":checked");
                     css_class = jQuery(this).find('.field.box .setting.lw-css-class').val();
                     background_image_url = jQuery(this).find('.field.box .setting.lw-background-image-url').val();
+                    style_css = jQuery(this).find('.field.box .setting.lw-style-css').val();
                     widget_name = jQuery(this).find('.widget-fields').attr('widget-name');
         
                     var item = {
@@ -359,6 +364,7 @@ function getJson(main_id){
                         'display_name': display_name,
                         'css_class': css_class,
                         'background_image_url': background_image_url,
+                        'style_css': style_css,
                         'widget_name': widget_name,
                         'field_arr': []
                     }
@@ -409,6 +415,7 @@ function load_widget(main_id){
         jQuery(row).find('.lw-row-setting .setting.lw-css-class').val(jsonRow['css_class']);
         jQuery(row).find('.lw-row-setting .setting.lw-background-image-url').val(jsonRow['background_image_url']);
         jQuery(row).find('.lw-row-setting .setting.lw-background-color').val(jsonRow['background_color']);
+        jQuery(row).find('.lw-row-setting .setting.lw-style-css').val(jsonRow['style_css']);
         jQuery(row).find('.lw-row-setting .setting.lw-full-width').val(jsonRow['full_width']);
         
         // column
@@ -429,6 +436,7 @@ function load_widget(main_id){
             jQuery(col).find('.lw-column-setting .setting.lw-display-name').prop('checked', jsonColumn['display_name']);
             jQuery(col).find('.lw-column-setting .setting.lw-css-class').val(jsonColumn['css_class']);
             jQuery(col).find('.lw-column-setting .setting.lw-background-image-url').val(jsonColumn['background_image_url']);
+            jQuery(col).find('.lw-column-setting .setting.lw-style-css').val(jsonColumn['style_css']);
 
             // item
             if(!jsonColumn['item_arr'])
@@ -447,6 +455,7 @@ function load_widget(main_id){
                 jQuery(item).find('.field.box .setting.lw-display-name').prop('checked', jsonItem['display_name']);
                 jQuery(item).find('.field.box .setting.lw-css-class').val(jsonItem['css_class']);
                 jQuery(item).find('.field.box .setting.lw-background-image-url').val(jsonItem['background_image_url']);
+                jQuery(item).find('.field.box .setting.lw-style-css').val(jsonItem['style_css']);
 
                 // field
                 if(!jsonItem['field_arr'])

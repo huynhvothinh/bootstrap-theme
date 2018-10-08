@@ -187,8 +187,10 @@ class lw_post_list{
                 ?>
                     <div class="lw-post-item <?php echo $post_css_class;?>">
                         <div class="lw-post-thumbnail">
-                            <?php echo get_the_post_thumbnail( $post->ID, $image_size);?>
-                            <div class="lw-image-layer"></div>
+                            <a href="<?php echo get_post_permalink();?>">
+                                <?php echo get_the_post_thumbnail( $post->ID, $image_size);?>
+                                <div class="lw-image-layer"></div>
+                            </a>
                         </div>
                         <div class="lw-post-date">
                             <i class="fa fa-calendar"></i>

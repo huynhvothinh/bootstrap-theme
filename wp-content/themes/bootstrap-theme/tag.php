@@ -41,7 +41,7 @@ if($template_id > 0){?>
         if($sidebar_position == 'left'){
             dynamic_sidebar('lw_sidebar');
         }else{        
-            the_content();
+            // the_content();
             $widget->widget_post($post->ID);
         }
         
@@ -51,7 +51,7 @@ if($template_id > 0){?>
         if($sidebar_position == 'right'){
             dynamic_sidebar('lw_sidebar');
         }else if($sidebar_position == 'left'){        
-            the_content();
+            // the_content();
             $widget->widget_post($post->ID);
         }
         

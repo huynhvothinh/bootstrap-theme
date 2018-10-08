@@ -19,14 +19,16 @@ class lw_breakcrumb{
             echo '">';
             echo 'Home';
             echo "</a></li>";
-            if (is_category() || is_single()) {
-                    echo '<li>';
-                    the_category(' </li><li> ');
-                    if (is_single()) {
-                            echo "</li><li>";
-                            the_title();
-                            echo '</li>';
-                    }
+            if (is_category()){
+                echo '<li>';
+                echo single_cat_title();
+                echo ' </li>';
+            } if(is_single()) {
+                echo '<li>';
+                the_category(' </li><li> '); 
+                echo "</li><li>";
+                the_title();
+                echo '</li>'; 
             } elseif (is_page()) {
                     echo '<li>';
                     echo the_title();

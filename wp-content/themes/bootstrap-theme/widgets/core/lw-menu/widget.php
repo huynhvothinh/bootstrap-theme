@@ -95,16 +95,16 @@ class lw_menu{
             <?php
         }else if($menu_location == 'nav'){
             wp_nav_menu( array(
-                'menu' => $menu_name,
+                'menu' => $menu_item,
                 'menu_id'  => $menu_item,
                 'depth' => 0, 
                 'container_class' => 'lw-menu-footer',
                 'items_wrap' => '<ul class="nav justify-content-center">%3$s</ul>',
                 'fallback_cb'    => false
             ) );
-        }else{   
+        }else{
             wp_nav_menu( array(
-                'menu' => $menu_name,
+                'menu' => $menu_item,
                 'menu_id'  => $menu_item,
                 'depth' => 0, 
                 'items_wrap' => '<ul class="lw-menu-custom">%3$s</ul>',

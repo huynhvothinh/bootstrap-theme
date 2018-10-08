@@ -25,10 +25,11 @@
 }
 .info-box .info-box-content p.info-box-title {
     font-weight: 700;
-    color: #1e2227;
+    color: white;
 }
 .info-box .info-box-content p {
     margin: 0 0 5px 0;
     line-height: normal;
-    color: #777;
+    color: #e91c23;
+    font-weight: bold;
 }

@@ -57,7 +57,6 @@ function bootstrap_themewoocommerce_wrapper_end() {
 	}
 }
 
-
 /**
  * Filter hook function monkey patching form classes
  * Author: Adriano Monecchi http://stackoverflow.com/a/36724593/307826
@@ -149,4 +148,16 @@ if ( ! function_exists ( 'bootstrap_themewoocommerce_add_to_cart_args' ) ) {
 		$args['class'] = str_replace('button','btn btn-outline-primary', 'button');
 		return $args;
 	}
+}
+
+// column per row
+add_filter( 'loop_shop_columns', 'lw_loop_shop_columns', 1, 10 ); 
+function lw_loop_shop_columns( $number_columns ) {
+    return 3;
+}
+
+add_filter( 'woocommerce_output_related_products_args', 'lw_related_products_args' );
+function lw_related_products_args( $args ) {
+    $args['columns'] = 3; 
+    return $args;
 }

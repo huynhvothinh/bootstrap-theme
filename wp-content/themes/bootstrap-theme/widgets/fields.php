@@ -30,6 +30,13 @@ function get_textarea_html($title, $key, $is_setting=false){
     $result = get_field_box_html($title, $html);
     return $result;
 }
+function get_textarea_html_simple($title, $key, $is_setting=false){
+    $plus_key = 'field-value';
+    if($is_setting) $plus_key = 'setting';
+    $html = '<textarea rows="4" cols="50" field-key="'.$key.'" class="'.$key.' '.$plus_key.' lw-editor textarea"> </textarea>';
+    $result = get_field_box_html($title, $html);
+    return $result;
+}
 function get_textbox_html($title, $key, $is_setting=false, $default_value=''){ 
     $plus_key = 'field-value';
     if($is_setting) $plus_key = 'setting';
@@ -60,25 +67,31 @@ function get_item_setting_html(){
     $html = get_textbox_html('Item name', 'lw-name', true);
     $html .= get_checkbox_html('Display name', 'lw-display-name', true);
     $html .= get_textbox_html('CSS class', 'lw-css-class', true);
-    $html .= getCSSExample();
+    $html .= getClassExample();
     $html .= get_textbox_html('Background image url', 'lw-background-image-url', true);
+    $html .= get_textarea_html_simple('Style css', 'lw-style-css', true);
+    $html .= getCssExample();
     return $html;
 }
 function get_column_setting_html(){
     $html = get_textbox_html('Column name', 'lw-name', true);
     $html .= get_checkbox_html('Display name', 'lw-display-name', true);
     $html .= get_textbox_html('CSS class', 'lw-css-class', true);  
-    $html .= getCSSExample();  
+    $html .= getClassExample();  
     $html .= get_textbox_html('Background image url', 'lw-background-image-url', true);
+    $html .= get_textarea_html_simple('Style css', 'lw-style-css', true);
+    $html .= getCssExample();
     return get_popup_html('column', $html);
 }
 function get_row_setting_html(){
     $html = get_textbox_html('Row name', 'lw-name', true);
     $html .= get_checkbox_html('Display name', 'lw-display-name', true);
     $html .= get_textbox_html('CSS class', 'lw-css-class', true);  
-    $html .= getCSSExample();
+    $html .= getClassExample();
     $html .= get_textbox_html('Background image url', 'lw-background-image-url', true);
     $html .= get_textbox_html('Background color', 'lw-background-color', true);
+    $html .= get_textarea_html_simple('Style css', 'lw-style-css', true);
+    $html .= getCssExample();
     $html .= get_select_html('Full width', 'lw-full-width', get_width_arr(), true);  
     return get_popup_html('row', $html);
 }
@@ -154,13 +167,23 @@ function get_thumbnail_size_arr(){
     ));
     return $image_sizes;
 }
-function getCSSExample(){
+function getClassExample(){
     return '<div class="field box">
     <div class="title field-title"></div>
     <div class="body field-body">
     <ul>
         <li>Margin: mt/mb/ml/mr + [-] + 0/1/2/3/4/5//auto</li>
         <li>Padding: pt/pb/pl/pr + [-] + 0/1/2/3/4/5//auto</li>
+    </ul>
+    </div>
+</div>';
+}
+function getCssExample(){
+    return '<div class="field box">
+    <div class="title field-title"></div>
+    <div class="body field-body">
+    <ul>
+        <li>background: bg-color bg-image position/bg-size bg-repeat bg-origin bg-clip bg-attachment initial|inherit;</li>
     </ul>
     </div>
 </div>';

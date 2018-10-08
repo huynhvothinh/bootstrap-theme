@@ -15,7 +15,7 @@ class lw_search{
         ?>
         <form action="/"> 
             <div class="input-group mb-3">
-                <input type="text" name="s" id="s"  class="form-control" 
+                <input type="text" name="s" id="s"  class="form-control" autocomplete="off" 
                     placeholder="<?php _e('Search', 'lw'); ?>" value="<?php echo $s;?>">
                 <div class="input-group-append">
                     <button class="btn btn-default" type="submit" ><?php _e('Search', 'lw'); ?></button> 

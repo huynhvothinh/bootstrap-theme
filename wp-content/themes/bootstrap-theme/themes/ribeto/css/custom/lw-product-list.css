@@ -1,5 +1,6 @@
 .lw-product-list .onsale{ 
     background-color: #e91c23;
+    overflow: hidden;
 }
 .lw-product-list .single_add_to_cart_button {
     border: 1px transparent;

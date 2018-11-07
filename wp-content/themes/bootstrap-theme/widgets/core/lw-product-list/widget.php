@@ -209,13 +209,14 @@ class lw_product_list{
                             </h5>
                         </div>
                         <div class="lw-product-price">
-                            <span class="price">
                             <?php 
                                 woocommerce_show_product_sale_flash( $post, $product );
                                 $price = $product->get_price_html(); 
-                                $price = $price ? $price : 'Liên hệ';
-                                echo $price;
+                                $blank = $price ? '' : 'blank'; 
+                                $price = $price ? $price : 'Liên hệ'; 
                             ?>
+                            <span class="price <?php echo $blank; ?>">
+                                <?php echo $price;?>
                             </span> 
                         </div>
                         <div class="lw-product-add-cart">

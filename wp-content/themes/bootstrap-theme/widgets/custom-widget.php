@@ -191,7 +191,7 @@ class lw_widget extends WP_Widget {
             <?php echo $full_width_class[1] ? '<div class="'.$full_width_class[1].'">' : '';?>
                 <div class="row">
                     <?php if($row->display_name){ ?>
-                    <h2 class="row-title"><?php echo $row->name;?></h2>
+                    <h2 class="row-title col"><?php echo $row->name;?></h2>
                     <?php } // end if?>
 
                     <?php             
@@ -222,7 +222,7 @@ class lw_widget extends WP_Widget {
         ?>
         <div class="col-md-<?php echo $column->size;?> <?php echo $column->css_class;?> <?php echo $hasBg;?>" <?php echo $styles_string;?>>
             <?php if($column->display_name){ ?>
-                <div class="row"><h3 class="column-title"><?php echo $column->name;?></h3></div>
+                <div class="row"><h3 class="column-title col"><?php echo $column->name;?></h3></div>
             <?php } // end if?>
 
             <?php             

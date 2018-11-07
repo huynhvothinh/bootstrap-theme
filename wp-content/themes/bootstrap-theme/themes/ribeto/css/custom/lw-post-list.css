@@ -1,3 +1,18 @@
+/* default */
+.lw-post-list .lw-post-item{
+    margin-bottom: 25px;
+}
+.lw-post-list .lw-post-excerpt{
+    display: none;
+}
+.lw-post-list .lw-post-title{
+    text-align: center; 
+    padding: 8px 0px;
+}
+.lw-post-list .lw-post-title .lw-title{
+    font-size: 16px;
+}
+
 /* SIDEBAR */
 .sidebar .lw-post-thumbnail,
 .sidebar .lw-post-excerpt{

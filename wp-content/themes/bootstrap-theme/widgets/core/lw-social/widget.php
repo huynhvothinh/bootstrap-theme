@@ -25,9 +25,11 @@ class lw_social{
                 $link = $arr['lw-social-hyperlink-'.$i];
                 $image = $arr['lw-social-image-'.$i];
                 if($link && $image){
+                    $actual_link  = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                    $link = str_replace('{{url}}', $actual_link, $link);
                 ?>
                     <div class="lw-social-item"> 
-                        <a href="<?php echo $link;?>" class="lw-social-hyperlink">
+                        <a href="<?php echo $link;?>" target="_blank" class="lw-social-hyperlink">
                             <img src="<?php echo $image;?>" class="lw-social-image"> 
                         </a> 
                     </div> 

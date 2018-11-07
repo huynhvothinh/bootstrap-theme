@@ -26,5 +26,5 @@ global $product;
 <?php if ( $price_html = $product->get_price_html() ) { ?>
 	<span class="price"><?php echo $price_html; ?></span>
 <?php } else { ?>
-	<span class="price">Liên hệ</span>
+	<span class="price blank">Liên hệ</span>
 <?php } ?>

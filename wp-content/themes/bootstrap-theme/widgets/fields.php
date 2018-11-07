@@ -172,6 +172,7 @@ function getClassExample(){
     <div class="title field-title"></div>
     <div class="body field-body">
     <ul>
+        <li><a href="https://www.w3schools.com/bootstrap4/bootstrap_ref_all_classes.asp" target="_blank">View all bootstrap classes.</a></li>
         <li>Margin: mt/mb/ml/mr + [-] + 0/1/2/3/4/5//auto</li>
         <li>Padding: pt/pb/pl/pr + [-] + 0/1/2/3/4/5//auto</li>
     </ul>

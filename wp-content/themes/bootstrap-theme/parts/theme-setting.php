@@ -1,4 +1,8 @@
 <?php
+add_filter( 'excerpt_length', 'lw_custom_excerpt_length', 999 );
+function lw_custom_excerpt_length( $length ) {
+	return 35;
+}
 // 
 add_action("admin_menu", "lw_add_theme_menu_item");
 function lw_add_theme_menu_item(){

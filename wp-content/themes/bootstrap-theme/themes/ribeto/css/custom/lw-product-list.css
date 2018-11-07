@@ -10,4 +10,15 @@
 }
 .lw-product-list .lw-product-price{ 
     color: #e91c23; 
+    text-align: center;
+}
+.lw-product-list .lw-product-price .price.blank{ 
+    display: none;
+}
+.lw-product-list .lw-product-title{
+    text-align: center;
+}
+.lw-product-list .lw-product-add-cart{
+    display: none;
+    text-align: center;
 }

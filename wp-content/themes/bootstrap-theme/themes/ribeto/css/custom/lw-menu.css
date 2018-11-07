@@ -3,8 +3,8 @@
 }
 .lw-menu .nav-link{
     text-transform: uppercase;
-    color: white!important;
-    font-size: 13px;
+    color: #ffffff!important;
+    font-size: 12px;
     margin: 10px;
     font-weight: bold;
 }
@@ -13,7 +13,7 @@
     position: relative;
 }
 .lw-menu .current-menu-item .nav-link{
-    color: #e91c23!important;
+    /* color: #e91c23!important; */
 }
 .lw-menu .current-menu-item .nav-link::before,
 .lw-menu .nav-item:hover .nav-link::before{
@@ -52,4 +52,8 @@
     left: 0px;
     width: 100%;
     z-index: 1000;
+}
+/* footer */
+.lw-footer .lw-menu-custom a{
+    color: white!important;
 }

@@ -10,7 +10,7 @@
     padding: 8px 0px;
 }
 .lw-post-list .lw-post-title .lw-title{
-    font-size: 16px;
+    font-size: 15px;
 }
 
 /* SIDEBAR */
@@ -25,6 +25,10 @@
     border-bottom: 1px dashed #e5e5e5;
     font-size: 80%;
     padding: 12px 0px 15px 0px;
+    margin-bottom: 0px;
+}
+.sidebar .lw-post-list .lw-post-title{
+    text-align: left;
 }
 .sidebar .lw-post-title .lw-title{
     font-size: 15px;

@@ -42,6 +42,7 @@ class lw_post_list{
         $fields_html .= get_select_html('Post type', 'lw-post-type', $post_type);
         $fields_html .= get_select_html('Category/Tag', 'lw-post-category', $items);
         $fields_html .= get_checkbox_html('Show Paging', 'lw-show-paging');
+        $fields_html .= get_checkbox_html('Carousel/Slider', 'lw-carousel');
         $fields_html .= get_textbox_html('Post per page (not for search)', 'lw-post-total');
         $fields_html .= get_select_html('Image size', 'lw-image-size', $image_sizes);
         $fields_html .= get_textbox_html('Post CSS class', 'lw-post-css-class');
@@ -51,12 +52,14 @@ class lw_post_list{
         echo $field_group_html;
     }
     public function widget($arr){
+        $listID = 'posts-'.time();
         $post_tag_category = '';
         $post_total = 12;
         $post_css_class = '';
         $image_size = 'full';
         $post_type = '';
         $show_paging = false;
+        $carousel = false;
         if(is_array($arr)){ 
             if(isset($arr['lw-post-category'])){
                 $post_tag_category = $arr['lw-post-category'];   
@@ -79,6 +82,9 @@ class lw_post_list{
             }
             if(isset($arr['lw-show-paging'])){
                 $show_paging = $arr['lw-show-paging']; 
+            }
+            if(isset($arr['lw-carousel'])){
+                $carousel = $arr['lw-carousel']; 
             }
         }
 
@@ -180,12 +186,12 @@ class lw_post_list{
 
         if ( $posts->have_posts() ){
         ?>
-            <div class="row <?php echo $post_type;?>">
+            <div class="row <?php echo $listID;?> <?php echo $post_type;?> <?php echo ($carousel ? 'owl-carousel owl-theme' : '');?>">
             <?php
                 global $post;
                 while ( $posts->have_posts() ) : $posts->the_post(); 
                 ?>
-                    <div class="lw-post-item <?php echo $post_css_class;?>">
+                    <div class="lw-post-item item <?php echo ($carousel ? '' : $post_css_class);?>">
                         <div class="lw-post-thumbnail">
                             <a href="<?php echo get_post_permalink();?>">
                                 <?php echo get_the_post_thumbnail( $post->ID, $image_size);?>
@@ -216,8 +222,36 @@ class lw_post_list{
                 <div class="paging mt-3"> 
                     <?php lw_get_paging($posts);?>
                 </div>
-            <?php
+            <?php            
             } // end if for paging
+            
+            if($carousel){
+                ?>
+                <script>
+                    $('.owl-carousel.<?php echo $listID;?>').owlCarousel({
+                        loop:false,
+                        nav:true,
+                        dots: true,
+                        margin:10,
+                        responsiveClass:true,
+                        responsive:{
+                            0:{
+                                items:2, 
+                                nav:true,
+                            },
+                            600:{
+                                items:3,
+                                nav:true,
+                            },
+                            1000:{
+                                items:5,
+                                nav:true,
+                            }
+                        }
+                    })
+                </script>
+            <?php
+            }
         } // end if
     }
 }

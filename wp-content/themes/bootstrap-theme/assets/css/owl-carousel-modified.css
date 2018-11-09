@@ -1,0 +1,18 @@
+.owl-carousel .owl-nav button.owl-next, 
+.owl-carousel .owl-nav button.owl-prev{
+    position: absolute;
+    top: 30%; 
+    line-height: 44px;
+    margin: 0px;
+}
+.owl-carousel .owl-nav button.owl-prev{
+    left: 0px; 
+}
+.owl-carousel .owl-nav button.owl-next{
+    right: 0px; 
+}
+.owl-carousel .owl-nav button.owl-next span, 
+.owl-carousel .owl-nav button.owl-prev span{
+    line-height: 40px;
+    font-size: 100px;
+}

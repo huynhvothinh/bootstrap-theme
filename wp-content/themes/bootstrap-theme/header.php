@@ -16,6 +16,9 @@ $theme_name = 'ribeto';
     <link rel="stylesheet" href="/wp-content/themes/bootstrap-theme/assets/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/wp-content/themes/bootstrap-theme/style.css">
+    
+    <link rel="stylesheet" href="/wp-content/themes/bootstrap-theme/assets/owl-carousel/assets/owl.carousel.min.css"></link>
+    <link rel="stylesheet" href="/wp-content/themes/bootstrap-theme/assets/owl-carousel/assets/owl.theme.default.min.css"></link>
 
     <link rel="stylesheet" href="/wp-content/themes/bootstrap-theme/themes/<?php echo $theme_name;?>/css/custom.css">
 
@@ -23,6 +26,8 @@ $theme_name = 'ribeto';
     <script src="/wp-content/themes/bootstrap-theme/assets/js/popper.min.js"></script>
     <script src="/wp-content/themes/bootstrap-theme/assets/js/bootstrap/bootstrap.min.js"></script>
     <script src="/wp-content/themes/bootstrap-theme/themes/<?php echo $theme_name;?>/js/custom.js"></script>
+    
+    <script src="/wp-content/themes/bootstrap-theme/assets/owl-carousel/owl.carousel.min.js"></script>
     
     <title><?php bloginfo('name'); ?> | <?php is_front_page() ? bloginfo('description') : wp_title('', true, ''); ?></title>
     <?php wp_head(); ?>

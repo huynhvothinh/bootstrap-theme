@@ -42,6 +42,7 @@ class lw_product_list{
         $fields_html .= get_select_html('Post type', 'lw-product-type', $product_type);
         $fields_html .= get_select_html('Category/Tag', 'lw-product-category', $items);
         $fields_html .= get_checkbox_html('Show Paging', 'lw-show-paging');
+        $fields_html .= get_checkbox_html('Carousel/Slider', 'lw-carousel');
         $fields_html .= get_textbox_html('Post per page (not for search)', 'lw-product-total');
         $fields_html .= get_select_html('Image size', 'lw-image-size', $image_sizes);
         $fields_html .= get_textbox_html('Post CSS class', 'lw-product-css-class', false, 'col-md-3 col-sm-6 col-12');
@@ -51,12 +52,14 @@ class lw_product_list{
         echo $field_group_html;
     }
     public function widget($arr){
+        $listID = 'products-'.time();
         $product_tag_category = '';
         $product_total = 12;
         $product_css_class = '';
         $image_size = 'full';
         $product_type = '';
         $show_paging = false;
+        $carousel = false;
         if(is_array($arr)){ 
             if(isset($arr['lw-product-category'])){
                 $product_tag_category = $arr['lw-product-category'];   
@@ -79,6 +82,9 @@ class lw_product_list{
             }
             if(isset($arr['lw-show-paging'])){
                 $show_paging = $arr['lw-show-paging']; 
+            }
+            if(isset($arr['lw-carousel'])){
+                $carousel = $arr['lw-carousel']; 
             }
         }
 
@@ -180,12 +186,12 @@ class lw_product_list{
 
         if ( $posts->have_posts() ){
         ?>
-            <div class="row <?php echo $product_type;?>">
+            <div class="row <?php echo $listID;?> <?php echo $product_type;?> <?php echo ($carousel ? 'owl-carousel owl-theme' : '');?>">
             <?php
                 global $post;
                 while ( $posts->have_posts() ) : $posts->the_post(); global $product;
                 ?>
-                    <div class="lw-product-item <?php echo $product_css_class;?>">
+                    <div class="lw-product-item item <?php echo ($carousel ? '' : $product_css_class);?>">
                         <div class="lw-product-thumbnail">
                             <a href="<?php echo get_post_permalink();?>">
                                 <?php if (has_post_thumbnail( $post->ID )){
@@ -236,6 +242,34 @@ class lw_product_list{
                 </div>
             <?php
             } // end if for paging
+
+            if($carousel){
+                ?>
+                <script>
+                    $('.owl-carousel.<?php echo $listID;?>').owlCarousel({
+                        loop:false,
+                        nav:true,
+                        dots: true,
+                        margin:10,
+                        responsiveClass:true,
+                        responsive:{
+                            0:{
+                                items:2, 
+                                nav:true,
+                            },
+                            600:{
+                                items:3,
+                                nav:true,
+                            },
+                            1000:{
+                                items:5,
+                                nav:true,
+                            }
+                        }
+                    })
+                </script>
+            <?php
+            }
         } // end if
     }
 }

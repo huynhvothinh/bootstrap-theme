@@ -158,6 +158,6 @@ function lw_loop_shop_columns( $number_columns ) {
 
 add_filter( 'woocommerce_output_related_products_args', 'lw_related_products_args' );
 function lw_related_products_args( $args ) {
-    $args['columns'] = 3; 
+    $args['columns'] = 4; 
     return $args;
 }

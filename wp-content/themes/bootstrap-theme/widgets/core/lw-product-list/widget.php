@@ -203,30 +203,32 @@ class lw_product_list{
                                 <div class="lw-image-layer"></div>
                             </a>
                         </div>
-                        <div class="lw-product-date">
-                            <i class="fa fa-calendar"></i>
-                            <?php 
-                                echo get_the_date('d-m-Y', $post->ID); 
-                            ?>
-                        </div>
-                        <div class="lw-product-title">
-                            <h5 class="lw-title">
-                                <a href="<?php echo get_post_permalink();?>"><?php the_title();?></a>
-                            </h5>
-                        </div>
-                        <div class="lw-product-price">
-                            <?php 
-                                woocommerce_show_product_sale_flash( $post, $product );
-                                $price = $product->get_price_html(); 
-                                $blank = $price ? '' : 'blank'; 
-                                $price = $price ? $price : 'Liên hệ'; 
-                            ?>
-                            <span class="price <?php echo $blank; ?>">
-                                <?php echo $price;?>
-                            </span> 
-                        </div>
-                        <div class="lw-product-add-cart">
-                            <?php woocommerce_template_loop_add_to_cart( $post, $product ); ?>
+                        <div class="lw-product-info">
+                            <div class="lw-product-date">
+                                <i class="fa fa-calendar"></i>
+                                <?php 
+                                    echo get_the_date('d-m-Y', $post->ID); 
+                                ?>
+                            </div>
+                            <div class="lw-product-title">
+                                <h5 class="lw-title">
+                                    <a href="<?php echo get_post_permalink();?>"><?php the_title();?></a>
+                                </h5>
+                            </div>
+                            <div class="lw-product-price">
+                                <?php 
+                                    woocommerce_show_product_sale_flash( $post, $product );
+                                    $price = $product->get_price_html(); 
+                                    $blank = $price ? '' : 'blank'; 
+                                    $price = $price ? $price : 'Liên hệ'; 
+                                ?>
+                                <span class="price <?php echo $blank; ?>">
+                                    <?php echo $price;?>
+                                </span> 
+                            </div>
+                            <div class="lw-product-add-cart">
+                                <?php woocommerce_template_loop_add_to_cart( $post, $product ); ?>
+                            </div>
                         </div>
                     </div>
                 <?php

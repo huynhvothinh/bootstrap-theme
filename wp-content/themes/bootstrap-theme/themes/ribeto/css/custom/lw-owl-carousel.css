@@ -1,0 +1,8 @@
+.owl-carousel .owl-nav button.owl-next, 
+.owl-carousel .owl-nav button.owl-prev, 
+.owl-carousel button.owl-dot{
+    color: #e91c23;
+}
+.owl-theme .owl-nav [class*=owl-]:hover {
+    background-color: #e91c23;
+}

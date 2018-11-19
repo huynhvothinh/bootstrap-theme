@@ -1,3 +1,7 @@
 .lw-breakcrumb ul{
     padding-left: 15px;
 }
+.lw-breakcrumb ul li {
+    font-weight: 400;
+    font-size: 13px;
+}

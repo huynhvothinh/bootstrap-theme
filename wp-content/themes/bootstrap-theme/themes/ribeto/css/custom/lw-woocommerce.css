@@ -40,5 +40,9 @@ body.woocommerce div.product p.price del, div.woocommerce div.product span.price
     color: gray;
 }
 body.woocommerce div.product .product_title{
-    font-size: 30px;
+    font-size: 26px;
+}
+body.woocommerce .price.blank,
+body.woocommerce .add-to-cart-container{
+    display: none!important;
 }

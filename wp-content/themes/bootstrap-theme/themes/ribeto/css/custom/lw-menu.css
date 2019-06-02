@@ -35,9 +35,9 @@
     content: " ";
     background-color: #e91c23;
     height: 8px;
-    width: 100%;
-    left: 0px;
-    bottom: 0px;
+    width: 8px; 
+    right: 0px;
+    top: 26px;
 }
 .lw-menu .dropdown-item{
     padding: 0px;
@@ -45,13 +45,26 @@
 .lw-menu .lang-item .nav-link{
     color: #545454!important;
 }
+.lw-menu .sub-menu{
+  background-color: #e91c23!important;
+}
+.lw-menu .sub-menu .nav-link::before{
+  display: none;
+}
+.lw-menu .sub-menu .nav-item{
+  border: 1px solid transparent;
+}
+.lw-menu .sub-menu .nav-item:hover{
+  background-color: transparent;
+  border-bottom: 1px solid white;
+}
 /* fixed menu */
 .fixed .fixed-menu{
     position: fixed!important;
     top: 0px;
     left: 0px;
     width: 100%;
-    z-index: 1000;
+    z-index: 100000;
 }
 /* footer */
 .lw-footer .lw-menu-custom a{
